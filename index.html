@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Single spa playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="importmap-type" content="systemjs-importmap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:400,700">
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "/node_modules/single-spa/lib/system/single-spa.min.js",
+          "single-spa-playground": "/dist/single-spa-playground.js"
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/import-map-overrides"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/named-exports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/named-register.min.js"></script>
+  </head>
+  <body>
+    <div id="single-spa-playground"></div>
+    <script>
+      if (!window.__SINGLE_SPA_DEVTOOLS__) {
+        window.__SINGLE_SPA_DEVTOOLS__ = {}
+      }
+      const playgroundData = localStorage.getItem('single-spa-playground')
+      if (playgroundData.includes('angular')) {
+        const globalDefine = window.globalDefine
+        delete window.define
+        const zoneEl = document.createElement('script')
+        zoneEl.src = 'https://unpkg.com/zone.js'
+        zoneEl.addEventListener('load', () => {
+          System.import('single-spa-playground')
+          window.define = globalDefine
+        })
+        document.head.appendChild(zoneEl)
+      } else {
+        System.import('single-spa-playground')
+      }
+    </script>
+  </body>
+</html>
