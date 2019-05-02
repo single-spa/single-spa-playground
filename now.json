@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "alias": "single-spa-playground.com",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build"
+    }
+  ],
+  "routes": [
+    { "src": "^/assets/(.*)", "dest": "/js/$1" },
+    { "src": ".*", "dest": "/index.html" }
+  ]
+}

@@ -10,12 +10,12 @@
     <script type="systemjs-importmap">
       {
         "imports": {
-          "single-spa": "/node_modules/single-spa/lib/system/single-spa.min.js",
-          "single-spa-playground": "/dist/single-spa-playground.js"
+          "single-spa": "https://unpkg.com/single-spa@4.3.3/lib/system/single-spa.min.js",
+          "single-spa-playground": "/assets/single-spa-playground.js"
         }
       }
     </script>
-    <script src="https://unpkg.com/import-map-overrides"></script>
+    <script src="https://unpkg.com/import-map-overrides@1.4.0/dist/import-map-overrides.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/amd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/named-exports.js"></script>
@@ -28,7 +28,7 @@
         window.__SINGLE_SPA_DEVTOOLS__ = {}
       }
       const playgroundData = localStorage.getItem('single-spa-playground')
-      if (playgroundData.includes('angular')) {
+      if (playgroundData && playgroundData.includes('angular')) {
         const globalDefine = window.globalDefine
         delete window.define
         const zoneEl = document.createElement('script')

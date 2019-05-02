@@ -8,8 +8,12 @@ export default function Introduction(props) {
       <PageHeader title="Single-spa playground" />
       <article className="card">
         <section>
-          The single-spa playground is a dev tool to help you get your code working with <a href="https://single-spa.js.org">single-spa</a>. If you
+          The single-spa playground is a website that helps you get your code working with <a href="https://single-spa.js.org">single-spa</a>. If you
           don't know what single-spa is, check out <a href="https://www.youtube.com/watch?v=L4jqow7NTVg&feature=youtu.be">this intro video</a>.
+        </section>
+        <section>
+          Single-spa also has a <a href="https://github.com/CanopyTax/single-spa-inspector" target="_blank">browser extension</a> that hooks into your browser's dev tools.
+          The extension allows you to view and control single-spa applications on any web page that uses single-spa.
         </section>
         <section>
           The playground isn't the only way to use single-spa, but is one of the easier ways. It will set you up with
