@@ -46,9 +46,14 @@ const css = `
   top: 0;
   left: 0;
   width: 100vw;
+  box-sizing: border-box; 
+  padding-bottom: 32rem;
+}
+
+body {
+  width: 100vw;
   height: 100vh;
   background-color: var(--light-gray);
-  box-sizing: border-box; 
 }
 
 & .playground * {
