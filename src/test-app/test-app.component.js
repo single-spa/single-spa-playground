@@ -63,8 +63,8 @@ export default function TestApp(props) {
       <PageHeader title={`Application: ${app.name}`} />
       <article className="card" {...scope}>
         <section>
-          Let's get {app.name} working. If you get stuck, feel free to ask a question in our <a target="_blank" href="https://join.slack.com/t/single-spa/shared_invite/enQtMzIwMTcxNTU3ODQyLTM1Y2U1OWMzNTNjOWYyZDBlMDJhN2VkYzk3MDI2NzQ2Nzg0MzMzNjVhNWE2YjVhMTcxNjFkOWYzMjllMmUxMjk">single-spa slack workspace</a>
-          or <a target="_blank" href="https://github.com/CanopyTax/single-spa-playground/issues">file a github issue</a>
+          Let's get {app.name} working. If you get stuck, feel free to ask a question in
+          our <a target="_blank" href="https://join.slack.com/t/single-spa/shared_invite/enQtMzIwMTcxNTU3ODQyLTM1Y2U1OWMzNTNjOWYyZDBlMDJhN2VkYzk3MDI2NzQ2Nzg0MzMzNjVhNWE2YjVhMTcxNjFkOWYzMjllMmUxMjk">single-spa slack workspace</a> or <a target="_blank" href="https://github.com/CanopyTax/single-spa-playground/issues">file a github issue</a>
         </section>
         <section>
           <RegisteredApp

@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "node"
+cache:
+  directories:
+    - "node_modules" # This will tell Travis CI to cache the dependencies
+script: npm run lint
+before_deploy: npm install now --no-save # Install Now CLI on Travis
+deploy:
+  - provider: script
+    script: now --token $NOW_TOKEN --target production
+    skip_cleanup: true
+    on:
+      master: true

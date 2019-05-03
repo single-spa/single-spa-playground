@@ -13,7 +13,7 @@ export default function Introduction(props) {
         </section>
         <section>
           Single-spa also has a <a href="https://github.com/CanopyTax/single-spa-inspector" target="_blank">browser extension</a> that hooks into your browser's dev tools.
-          The extension allows you to view and control single-spa applications on any web page that uses single-spa.
+          The playground and browser extension can work in tandem to help you debug your single-spa applications.
         </section>
         <section>
           The playground isn't the only way to use single-spa, but is one of the easier ways. It will set you up with
