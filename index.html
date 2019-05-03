@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Single spa playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="importmap-type" content="systemjs-importmap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo:400,700">
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://unpkg.com/single-spa@4.3.3/lib/system/single-spa.min.js",
+          "single-spa-playground": "/assets/single-spa-playground.js"
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/import-map-overrides@1.4.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/named-exports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.1/extras/named-register.min.js"></script>
+  </head>
+  <body>
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+      // ----------------------------------------------------------------------
+      // This script checks to see if a redirect is present in the query string
+      // and converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      (function(l) {
+        if (l.search) {
+          var q = {};
+          l.search.slice(1).split('&').forEach(function(v) {
+            var a = v.split('=');
+            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+          });
+          if (q.p !== undefined) {
+            window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + (q.p || '') +
+              (q.q ? ('?' + q.q) : '') +
+              l.hash
+            );
+          }
+        }
+      }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
+    <div id="single-spa-playground"></div>
+    <script>
+      if (!window.__SINGLE_SPA_DEVTOOLS__) {
+        window.__SINGLE_SPA_DEVTOOLS__ = {}
+      }
+      const playgroundData = localStorage.getItem('single-spa-playground')
+      if (playgroundData && playgroundData.includes('angular')) {
+        const globalDefine = window.globalDefine
+        delete window.define
+        const zoneEl = document.createElement('script')
+        zoneEl.src = 'https://unpkg.com/zone.js'
+        zoneEl.addEventListener('load', () => {
+          System.import('single-spa-playground')
+          window.define = globalDefine
+        })
+        document.head.appendChild(zoneEl)
+      } else {
+        System.import('single-spa-playground')
+      }
+    </script>
+  </body>
+</html>
