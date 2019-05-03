@@ -1,5 +1,5 @@
 # single-spa-playground
-[single-spa-playground.com](https://single-spa-playground.com)
+[single-spa-playground.org](http://single-spa-playground.org)
 
 The single-spa playground is a website that helps you get your code working with <a href="https://single-spa.js.org">single-spa</a>. If you
 don't know what single-spa is, check out <a href="https://www.youtube.com/watch?v=L4jqow7NTVg&feature=youtu.be">this intro video</a>.
