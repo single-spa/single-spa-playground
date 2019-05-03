@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "rimraf dist && webpack --config webpack.config.js --mode=production && copyfiles index.html 404.html dist",
+    "build": "rimraf dist && webpack --config webpack.config.js --mode=production && copyfiles index.html 404.html CNAME dist",
     "lint": "eslint src"
   },
   "main": "dist/single-spa-playground.min.js",
