@@ -15,7 +15,7 @@ export const mediaMobile = `@media screen and (max-width: 1000px) and (min-width
 export const mediaDesktop = `@media screen and (min-width: 1000px)`;
 
 const css = `
-:root {
+:root, html {
   --single-spa-blue: #01f;
   --light-gray: #F4F5F8;
   font-size: 1px;
