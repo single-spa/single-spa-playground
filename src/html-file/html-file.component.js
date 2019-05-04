@@ -75,7 +75,7 @@ function useCode() {
     </script>
     <link rel="preload" href="https://unpkg.com/single-spa@4.3.2/lib/system/single-spa.min.js" as="script" crossorigin="anonymous" />${needsZone ? `
     <script src="https://unpkg.com/zone.js"></script>` : ``}
-    <script src="https://unpkg.com/import-map-overrides@1.4.0/dist/import-map-overrides.js"></script>
+    <script src="https://unpkg.com/import-map-overrides@1.5.0/dist/import-map-overrides.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.6/system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.6/extras/amd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/3.1.6/extras/named-exports.js"></script>
