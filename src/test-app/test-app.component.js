@@ -172,10 +172,10 @@ const css = `
 }
 
 & .step-number {
-  height: 30rem;
-  width: 30rem;
+  height: 3.0rem;
+  width: 3.0rem;
   border-radius: 50%;
-  border: 2rem solid var(--single-spa-blue);
+  border: .2rem solid var(--single-spa-blue);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,35 +183,35 @@ const css = `
 }
 
 & .step-summary {
-  margin-left: 16rem;
+  margin-left: 1.6rem;
 }
 
 & .step-detail, & .between-steps {
-  margin-left: 15rem;
-  border-left: 2rem solid var(--single-spa-blue);
-  padding-left: 32rem;
+  margin-left: 1.5rem;
+  border-left: .2rem solid var(--single-spa-blue);
+  padding-left: 3.2rem;
 }
 
 & .step-detail {
-  padding-top: 16rem;
+  padding-top: 1.6rem;
 }
 
 & .between-steps {
-  height: 32rem;
+  height: 3.2rem;
 }
 
 & .error .step-number {
-  border: 2rem solid red;
+  border: .2rem solid red;
   background-color: red;
   color: white;
 }
 
 & .error .step-detail, & .error .between-steps, & .error-before-step .step-detail, & .error-before-step .between-steps {
-  border-left: 2rem solid red;
+  border-left: .2rem solid red;
 }
 
 & .error-before-step .step-number {
-  border: 2rem solid red;
+  border: .2rem solid red;
   color: red;
 }
 
@@ -221,7 +221,7 @@ const css = `
 }
 
 & .congrats {
-  height: 38rem;
+  height: 3.8rem;
   display: flex;
   align-items: center;
 }

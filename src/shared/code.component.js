@@ -25,6 +25,6 @@ const css = `
 
 & .styled-code {
   background-color: rgb(239, 236, 244);
-  padding: 16rem;
+  padding: 1.6rem;
 }
 `

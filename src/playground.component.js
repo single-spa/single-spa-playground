@@ -47,7 +47,7 @@ const css = `
   left: 0;
   width: 100vw;
   box-sizing: border-box; 
-  padding-bottom: 32rem;
+  padding-bottom: 3.2rem;
 }
 
 body {
@@ -72,12 +72,12 @@ ${mediaMobile} {
 
 ${mediaDesktop} {
   & .navbar-margin {
-    margin-left: 236rem;
+    margin-left: 23.6rem;
   }
 
   & .centered-content {
-    min-width: 560rem;
-    max-width: 768rem;
+    min-width: 56.0rem;
+    max-width: 76.8rem;
   }
 }
 `

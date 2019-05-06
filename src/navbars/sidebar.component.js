@@ -116,7 +116,7 @@ const css = `
   position: fixed;
   top: 0;
   left: 0;
-  width: 236rem;
+  width: 23.6rem;
   height: 100vh;
   background-color: white;
   box-shadow: 0 10px 40px -24px #393b3f;
@@ -125,7 +125,7 @@ const css = `
 
 ${mediaMobile} {
   & .sidebar {
-    left: -236rem;
+    left: -23.6rem;
   }
 
   & .sidebar.force-show {
@@ -152,13 +152,13 @@ ${mediaMobile} {
   color: black;
   display: flex;
   align-items: center;
-  min-height: 56rem;
-  max-height: 56rem;
-  padding: 8rem 16rem;
+  min-height: 5.6rem;
+  max-height: 5.6rem;
+  padding: .8rem 1.6rem;
 }
 
 & .nav-link.logo-nav-link {
-  padding-left: 4rem;
+  padding-left: .4rem;
 }
 
 & .nav-link > div {
@@ -169,7 +169,7 @@ ${mediaMobile} {
 }
 
 & .logo {
-  height: 40rem;
+  height: 4.0rem;
 }
 
 & .logo-row {
@@ -178,7 +178,7 @@ ${mediaMobile} {
 }
 
 & .product-name {
-  padding-left: 8rem;
+  padding-left: .8rem;
 }
 
 & .active {

@@ -18,26 +18,26 @@ const css = `
 :root, html {
   --single-spa-blue: #01f;
   --light-gray: #F4F5F8;
-  font-size: 1px;
+  font-size: 10px;
 }
 
-body {
-  font-size: 16rem;
+body * {
+  font-size: 1.6rem;
 }
 
 input, select {
-  font-size: 18rem;
-  height: 38rem;
-  padding: 0 6rem;
+  font-size: 1.8rem;
+  height: 3.8rem;
+  padding: 0 .6rem;
 }
 
 & button + button {
-  margin-left: 16rem;
+  margin-left: 1.6rem;
 }
 
 & button, & a.button {
-  font-size: 18rem;
-  border-radius: 6rem;
+  font-size: 1.8rem;
+  border-radius: .6rem;
   padding: 8px 12px;
   border: none;
   text-align: center;
@@ -77,16 +77,16 @@ input, select {
   background-color: white;
   border-radius: 2px;
   box-shadow: 0 16px 50px -24px #a3a3a3;
-  padding: 16rem;
+  padding: 1.6rem;
 }
 
 & .card section:not(:last-child) {
-  margin-bottom: 24rem;
+  margin-bottom: 2.4rem;
 }
 
 & .actions {
   display: flex;
   justify-content: center;
-  margin-top: 16rem;
+  margin-top: 1.6rem;
 }
 `

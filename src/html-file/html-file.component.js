@@ -115,6 +115,6 @@ const css = `
 & .copy-row {
   display: flex;
   justify-content: flex-end;
-  margin: 8rem 0;
+  margin: .8rem 0;
 }
 `

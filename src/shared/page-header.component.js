@@ -13,14 +13,14 @@ export default function PageHeader(props) {
 
 const css = `
 & header {
-  height: 160rem;
+  height: 16.0rem;
   background-color: var(--single-spa-blue);
   display: flex;
   align-items: flex-end;
   color: white;
-  padding: 24rem;
-  font-size: 32rem;
+  padding: 2.4rem;
+  font-size: 3.2rem;
   font-weight: bold;
-  margin-bottom: 16rem;
+  margin-bottom: 1.6rem;
 }
 `

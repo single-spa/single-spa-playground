@@ -84,16 +84,16 @@ const css = `
 }
 
 & .application-form div {
-  height: 50rem;
+  height: 5.0rem;
 }
 
 & .application-form label div {
-  width: 250rem;
+  width: 25.0rem;
   display: flex;
   align-items: center;
 }
 
 & .application-form input, & .application-form select {
-  width: 350rem;
+  width: 35.0rem;
 }
 `

@@ -67,29 +67,29 @@ export default function EditImportMap(props) {
 
 const css = `
 & [aria-labelledby="module-name-label"], #module-name-label {
-  width: 160rem;
+  width: 16.0rem;
 }
 
 & [aria-labelledby="module-url-label"], #module-url-label {
-  width: 300rem;
+  width: 30.0rem;
 }
 
 & .labels {
   display: flex;
-  margin-bottom: 8rem;
+  margin-bottom: .8rem;
 }
 
 & .module {
-  margin-bottom: 8rem;
+  margin-bottom: .8rem;
   display: flex;
   align-items: center;
 }
 
 & .actions {
-  padding-top: 8rem;
+  padding-top: .8rem;
 }
 
 & .remove {
-  margin-left: 16rem;
+  margin-left: 1.6rem;
 }
 `

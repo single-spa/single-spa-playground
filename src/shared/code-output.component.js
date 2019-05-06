@@ -16,7 +16,7 @@ export default function CodeOutput(props) {
 const css = `
 & .styled-code {
   background-color: rgb(239, 236, 244);
-  padding: 16rem;
-  line-height: 50rem;
+  padding: 1.6rem;
+  line-height: 5.0rem;
 }
 `

@@ -93,7 +93,7 @@ export default function RegisteredApps(props) {
 
 const css = `
 & .add-application {
-  margin-top: 16rem;
+  margin-top: 1.6rem;
 }
 
 & .call-to-action {
@@ -102,6 +102,6 @@ const css = `
 }
 
 & .next-step {
-  margin-top: 16rem;
+  margin-top: 1.6rem;
 }
 `

@@ -42,7 +42,7 @@ const css = `
   left: 0;
   top: 0;
   height: 100%;
-  width: calc(100% - 150rem);
+  width: calc(100% - 15.0rem);
   background-color: rgba(230, 230, 230, 0.8);
   display: none;
   align-items: center;
@@ -59,7 +59,7 @@ const css = `
   right: 0;
   top: 0;
   height: 100%;
-  width: 150rem;
+  width: 15.0rem;
   background-color: lightgray;
   display: none;
   align-items: center;
