@@ -22,8 +22,8 @@ const css = `
 & .hidden-playground {
   z-index: 10000;
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 4px;
+  right: 70px;
 }
 
 & .link, & .link:focus, & .link:visited {
