@@ -69,17 +69,18 @@ function useCode() {
       {
         "imports": {${applications.map(app => (`
           "${app.name}": "${appUrls[app.name]}",`))}
-          "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.5/system/single-spa.min.js"
+          "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.6/system/single-spa.min.js"
         }
       }
     </script>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.5/system/single-spa.min.js" as="script" crossorigin="anonymous" />${needsZone ? `
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.6/system/single-spa.min.js" as="script" crossorigin="anonymous" />${needsZone ? `
     <script src="https://unpkg.com/zone.js"></script>` : ``}
-    <script src="https://unpkg.com/import-map-overrides@1.6.1/dist/import-map-overrides.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.1/system.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.1/extras/amd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.1/extras/named-exports.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.1/extras/named-register.min.js"></script>
+    <script src="https://unpkg.com/import-map-overrides@1.7.2/dist/import-map-overrides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-exports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/named-register.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.1.0/extras/use-default.min.js"></script>
   </head>
   <body>
     <script>
@@ -93,7 +94,7 @@ function useCode() {
       })
     </script>
     <!-- See https://github.com/joeldenning/import-map-overrides#user-interface  -->
-    <import-map-overrides-full></import-map-overrides-full>
+    <import-map-overrides-full show-when-local-storage="overrides-ui"></import-map-overrides-full>
   </body>
 </html>
 `.trim()
