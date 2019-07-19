@@ -2,7 +2,6 @@ import React, {useState, useContext} from 'react'
 import Code from '../shared/code.component'
 import PageHeader from '../shared/page-header.component';
 import {useCss} from 'kremling'
-import EditImportMap from './edit-import-map.component'
 import {Link} from 'react-router-dom'
 import { LocalStorageContext } from '../shared/use-local-storage-data.hook';
 
@@ -25,9 +24,12 @@ export default function ImportMap(props) {
         </section>
         {editingImportMap
           ?
-            <EditImportMap
-              finished={finishedEditing}
-            />
+            <>
+              <div>
+                Click on the buttons below to view and modify your import map
+              </div>
+              <import-map-overrides-list></import-map-overrides-list>
+            </>
           :
             <>
               <section className="call-to-action">
@@ -39,18 +41,18 @@ export default function ImportMap(props) {
                 </button>
               </section>
               <Code code={JSON.stringify(window.importMapOverrides.getOverrideMap(), null, 2)} />
-              <section className="actions">
-                <Link to="/registered-apps" className="secondary button">
-                  Back
-                </Link>
-                {applications.length > 0 &&
-                  <Link to={`/app/${applications[0].name}`} className="primary button">
-                    Next step: test it out
-                  </Link>
-                }
-              </section>
             </>
         }
+        <section className="actions">
+          <Link to="/registered-apps" className="secondary button">
+            Back
+          </Link>
+          {applications.length > 0 &&
+            <Link to={`/app/${applications[0].name}`} className="primary button">
+              Next step: test it out
+            </Link>
+          }
+        </section>
       </article>
     </>
   )
