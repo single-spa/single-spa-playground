@@ -11,6 +11,7 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
         /* global System */
         return System.import(props.app.name)
           .catch(err => {
+            console.error(err)
             setError(err)
             throw err
           })
