@@ -35,7 +35,7 @@ export default function HtmlFile(props) {
         <h3>Your single-spa root config</h3>
         <div>
           You'll want to create an <span className="whole-new-git-repo">entirely new git repo</span> for your single-spa root config, separate from your
-          applications. Then, copy the html below into a file called <code>index.html</code> and run <code>npx light-server -s . --historyindex '/index.html' -o</code> from
+          applications. Then, copy the html below into a file called <code>index.html</code> and run <code>npx serve -s</code> from
           the same directory as the html file. You should now be able to see your application working locally!
         </div>
         <div className="copy-row">
