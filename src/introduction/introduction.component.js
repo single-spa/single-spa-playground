@@ -35,7 +35,7 @@ export default function Introduction(props) {
           </ol>
         </section>
         <section>
-          If you get stuck or have suggestions for improving single-spa-playground, consider <a target="_blank" href="https://join.slack.com/t/single-spa/shared_invite/enQtMzIwMTcxNTU3ODQyLTM1Y2U1OWMzNTNjOWYyZDBlMDJhN2VkYzk3MDI2NzQ2Nzg0MzMzNjVhNWE2YjVhMTcxNjFkOWYzMjllMmUxMjk">joining our slack workspace</a>,{" "}
+          If you get stuck or have suggestions for improving single-spa-playground, consider <a target="_blank" href="https://join.slack.com/t/single-spa/shared_invite/enQtODAwNTIyMzc4OTE1LWUxMTUwY2M1MTY0ZGMzOTUzMGNkMzI1NzRiYzYwOWM1MTEzZDM1NDAyNWM3ZmViOTAzZThkMDcwMWZmNTFmMWQ">joining our slack workspace</a>,{" "}
           <a target="_blank" href="https://github.com/CanopyTax/single-spa-playground/pulls">opening a pull request</a>, or{" "}
           <a target="_blank" href="https://github.com/CanopyTax/single-spa-playground/issues">filing an issue.</a>
         </section>
