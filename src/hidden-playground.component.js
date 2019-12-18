@@ -1,9 +1,9 @@
-import React from 'react'
-import {useCss} from 'kremling'
-import {navigateToUrl} from 'single-spa'
+import React from "react";
+import { useCss } from "kremling";
+import { navigateToUrl } from "single-spa";
 
 export default function HiddenPlayground(props) {
-  const scope = useCss(css)
+  const scope = useCss(css);
 
   return (
     <div className="hidden-playground" {...scope}>
@@ -15,7 +15,7 @@ export default function HiddenPlayground(props) {
         />
       </a>
     </div>
-  )
+  );
 }
 
 const css = `
@@ -35,4 +35,4 @@ const css = `
   width: 50px;
   height: 50px;
 }
-`
+`;

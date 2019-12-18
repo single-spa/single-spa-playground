@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import Topbar from './topbar.component'
-import Sidebar from './sidebar.component'
+import React, { useState, useEffect } from "react";
+import Topbar from "./topbar.component";
+import Sidebar from "./sidebar.component";
 
 export default function Navbars(props) {
   const [forceSidebar, setForceSidebar] = useState(false);
@@ -21,13 +21,13 @@ export default function Navbars(props) {
       <Topbar showSidebar={showSidebar} />
       <Sidebar forceShow={forceSidebar} hideSidebar={hideSidebar} />
     </>
-  )
+  );
 
   function hideSidebar() {
-    setForceSidebar(false)
+    setForceSidebar(false);
   }
 
   function showSidebar() {
-    setForceSidebar(true)
+    setForceSidebar(true);
   }
 }

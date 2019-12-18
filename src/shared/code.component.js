@@ -1,16 +1,14 @@
-import React from 'react'
-import {useCss} from 'kremling'
+import React from "react";
+import { useCss } from "kremling";
 
 export default function Code(props) {
-  const scope = useCss(css)
+  const scope = useCss(css);
 
   return (
     <pre {...scope} className="styled-code">
-      <code>
-        {props.code.trim()}
-      </code>
+      <code>{props.code.trim()}</code>
     </pre>
-  )
+  );
 }
 
 const css = `
@@ -27,4 +25,4 @@ const css = `
   background-color: rgb(239, 236, 244);
   padding: 1.6rem;
 }
-`
+`;

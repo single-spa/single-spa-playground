@@ -1,4 +1,5 @@
 # single-spa-playground
+
 [single-spa-playground.org](http://single-spa-playground.org)
 
 The single-spa playground is a website that helps you get your code working with <a href="https://single-spa.js.org">single-spa</a>. If you
@@ -8,6 +9,7 @@ The playground website is a step-by-step tutorial that helps you configure thing
 inside the playground. If you have suggestions for improving it, please submit a pull request for file an issue.
 
 ## Browser extension
+
 Single-spa also has a <a href="https://github.com/CanopyTax/single-spa-inspector" target="_blank">browser extension</a> that hooks into your browser's dev tools.
 The extension allows you to view and control single-spa applications on any web page that uses single-spa. Feel free to download the extension, in addition
 to using the single-spa playground. The two complement each other.

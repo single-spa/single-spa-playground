@@ -1,14 +1,10 @@
-import React from 'react'
-import {useCss} from 'kremling'
+import React from "react";
+import { useCss } from "kremling";
 
 export default function Styleguide(props) {
-  const scope = useCss(css)
+  const scope = useCss(css);
 
-  return (
-    <div {...scope}>
-      {props.children}
-    </div>
-  )
+  return <div {...scope}>{props.children}</div>;
 }
 
 export const mediaMobile = `@media screen and (max-width: 1000px) and (min-width: 1px)`;
@@ -89,4 +85,4 @@ input, select {
   justify-content: center;
   margin-top: 1.6rem;
 }
-`
+`;

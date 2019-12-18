@@ -1,14 +1,10 @@
-import React from 'react'
-import {useCss} from 'kremling'
+import React from "react";
+import { useCss } from "kremling";
 
 export default function PageHeader(props) {
-  const scope = useCss(css)
+  const scope = useCss(css);
 
-  return (
-    <header {...scope}>
-      {props.title}
-    </header>
-  )
+  return <header {...scope}>{props.title}</header>;
 }
 
 const css = `
@@ -23,4 +19,4 @@ const css = `
   font-weight: bold;
   margin-bottom: 1.6rem;
 }
-`
+`;

@@ -20,7 +20,11 @@ export default function Topnav(props) {
       </div>
       <Link to="" className="logo-link">
         single-spa playground
-        <img src="https://single-spa.js.org/img/logo-white-bgblue.svg" alt="single-spa logo" className="logo" />
+        <img
+          src="https://single-spa.js.org/img/logo-white-bgblue.svg"
+          alt="single-spa logo"
+          className="logo"
+        />
       </Link>
     </div>
   );

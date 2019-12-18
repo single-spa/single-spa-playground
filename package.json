@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "rimraf dist && webpack --config webpack.config.js --mode=production && copyfiles index.html 404.html CNAME dist",
+    "prettier": "prettier --write './**'",
     "lint": "eslint src"
   },
   "main": "dist/single-spa-playground.min.js",
@@ -12,7 +13,7 @@
   "license": "MIT",
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint"
+      "pre-commit": "pretty-quick --staged && yarn lint"
     }
   },
   "devDependencies": {
@@ -23,8 +24,12 @@
     "babel-loader": "^8.0.6",
     "copyfiles": "^2.1.1",
     "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-config-react-important-stuff": "^2.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.3",
     "webpack-cli": "^3.3.10",
