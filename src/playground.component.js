@@ -16,6 +16,7 @@ import Navbars from "./navbars/navbars.component";
 import ImportMap from "./import-map/import-map.component";
 import HtmlFile from "./html-file/html-file.component";
 import Stuck from "./stuck/stuck.component";
+import InstantTest from "./instant-test/instant-test.component";
 
 export default function Playground(props) {
   const scope = useCss(css);
@@ -38,6 +39,7 @@ export default function Playground(props) {
                 <Route path="/app/:appName" component={TestApp} />
                 <Route path="/html-file" component={HtmlFile} />
                 <Route path="/stuck" component={Stuck} />
+                <Route path="/instant-test" component={InstantTest} />
               </BrowserRouter>
             </div>
           </div>
