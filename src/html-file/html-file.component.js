@@ -69,18 +69,17 @@ function useCode() {
       {
         "imports": {${applications.map(app => (`
           "${app.name}": "${appUrls[app.name]}",`))}
-          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js"
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.4.1/lib/system/single-spa.min.js"
         }
       }
     </script>
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js" as="script" crossorigin="anonymous" />${needsZone ? `
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@4.4.1/lib/system/single-spa.min.js" as="script" crossorigin="anonymous" />${needsZone ? `
     <script src="https://cdn.jsdelivr.net/npm/zone.js/dist/zone.min.js"></script>` : ``}
-    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.8.0/dist/import-map-overrides.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/system.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/amd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/named-exports.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/named-register.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/5.0.0/extras/use-default.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.10.1/dist/import-map-overrides.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.4/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.4/dist/extras/amd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.4/dist/extras/named-exports.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.4/dist/extras/named-register.min.js"></script>
   </head>
   <body>
     <script>
