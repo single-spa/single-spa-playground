@@ -1,22 +1,25 @@
-import React, {useEffect, useContext} from 'react'
-import {useCss, always, maybe} from 'kremling'
-import {NavLink} from 'react-router-dom'
-import { mediaMobile } from '../styleguide/styleguide.component';
-import { LocalStorageContext } from '../shared/use-local-storage-data.hook';
+import React, { useEffect, useContext } from "react";
+import { useCss, always, maybe } from "kremling";
+import { NavLink } from "react-router-dom";
+import { mediaMobile } from "../styleguide/styleguide.component";
+import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 
 export default function Sidebar(props) {
-  const scope = useCss(css)
-  const {applications} = useContext(LocalStorageContext)
+  const scope = useCss(css);
+  const { applications } = useContext(LocalStorageContext);
 
   useEffect(() => {
     if (props.forceShow) {
       window.addEventListener("click", props.hideSidebar);
       return () => window.removeEventListener("click", props.hideSidebar);
     }
-}, [props.forceShow]);
+  }, [props.forceShow]);
 
   return (
-    <nav className={always("sidebar").maybe("force-show", props.forceShow)} {...scope}>
+    <nav
+      className={always("sidebar").maybe("force-show", props.forceShow)}
+      {...scope}
+    >
       <ul className="navbar-links">
         <div>
           <li>
@@ -102,8 +105,8 @@ export default function Sidebar(props) {
         </div>
       </ul>
     </nav>
-  )
-    
+  );
+
   function maybeHideSidebar() {
     if (props.forceShow) {
       props.hideSidebar();
@@ -184,4 +187,4 @@ ${mediaMobile} {
 & .active {
   font-weight: bold;
 }
-`
+`;
