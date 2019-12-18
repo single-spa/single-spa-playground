@@ -1,3 +1,4 @@
 {
-  "extends": "react-important-stuff"
+  "extends": "react-important-stuff",
+  "parser": "babel-eslint"
 }
