@@ -17,7 +17,7 @@ export default function Introduction(props) {
         </section>
         <section>
           The playground isn't the only way to use single-spa, but is one of the easier ways. It will set you up with
-          single-spa, <a href="https://github.com/systemjs/systemjs">systemjs@3</a>, and <a href="https://github.com/WICG/import-maps">import maps</a>.
+          single-spa, <a href="https://github.com/systemjs/systemjs">systemjs@6</a>, and <a href="https://github.com/WICG/import-maps">import maps</a>.
           This lets you do the following:
           <ol>
             <li>
