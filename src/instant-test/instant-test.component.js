@@ -4,9 +4,12 @@ import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 export default function InstantTest(props) {
   const params = new URLSearchParams(location.search);
   const isValid = params.has("name") && params.has("url");
-  const { applications, addApplication, updateApplication } = React.useContext(
-    LocalStorageContext
-  );
+  const {
+    applications,
+    addApplication,
+    updateApplication,
+    resetApplications
+  } = React.useContext(LocalStorageContext);
 
   React.useEffect(() => {
     if (!isValid) {

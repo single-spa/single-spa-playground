@@ -27,6 +27,10 @@ export default function useLocalStorageData() {
         applications: data.applications.filter(a => a.name !== appName)
       });
       window.importMapOverrides.removeOverride(appName);
+    },
+    resetApplications() {
+      setData(emptyData);
+      window.importMapOverrides.resetOverrides();
     }
   };
 
