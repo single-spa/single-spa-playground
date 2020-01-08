@@ -16,6 +16,8 @@ export default function InstantTest(props) {
       return;
     }
 
+    resetApplications();
+
     const app = { name: params.get("name"), pathPrefix: "/" };
     if (applications.some(app => app.name === params.get("name"))) {
       updateApplication(app, params.get("name"));
