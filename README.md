@@ -1,4 +1,5 @@
 # single-spa-playground
+[![Build Status](https://travis-ci.org/CanopyTax/single-spa-playground.svg?branch=master)](https://travis-ci.org/CanopyTax/single-spa-playground)
 
 [single-spa-playground.org](http://single-spa-playground.org)
 
