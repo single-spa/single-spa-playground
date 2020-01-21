@@ -20,7 +20,7 @@ ${JSON.stringify(window.importMapOverrides.getOverrideMap(), null, 2)}
 
 ## Description
 `;
-  const newIssueUrl = `https://github.com/CanopyTax/single-spa-playground/issues/new?body=${encodeURIComponent(
+  const newIssueUrl = `https://github.com/single-spa/single-spa-playground/issues/new?body=${encodeURIComponent(
     issueBody
   )}`;
 
@@ -42,7 +42,7 @@ ${JSON.stringify(window.importMapOverrides.getOverrideMap(), null, 2)}
         . There may be people who have experienced similar problems, so be sure
         to{" "}
         <a
-          href="https://github.com/CanopyTax/single-spa-playground/issues"
+          href="https://github.com/single-spa/single-spa-playground/issues"
           target="_blank"
         >
           search for existing or closed issues
