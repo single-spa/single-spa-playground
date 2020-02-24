@@ -73,7 +73,7 @@ export default function TestApp(props) {
           or{" "}
           <a
             target="_blank"
-            href="https://github.com/CanopyTax/single-spa-playground/issues"
+            href="https://github.com/single-spa/single-spa-playground/issues"
           >
             file a github issue
           </a>

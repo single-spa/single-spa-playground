@@ -1,5 +1,6 @@
 # single-spa-playground
-[![Build Status](https://travis-ci.org/CanopyTax/single-spa-playground.svg?branch=master)](https://travis-ci.org/CanopyTax/single-spa-playground)
+
+[![Build Status](https://travis-ci.com/single-spa/single-spa-playground.svg?branch=master)](https://travis-ci.com/single-spa/single-spa-playground)
 
 [single-spa-playground.org](http://single-spa-playground.org)
 
@@ -11,6 +12,6 @@ inside the playground. If you have suggestions for improving it, please submit a
 
 ## Browser extension
 
-Single-spa also has a <a href="https://github.com/CanopyTax/single-spa-inspector" target="_blank">browser extension</a> that hooks into your browser's dev tools.
+Single-spa also has a <a href="https://github.com/single-spa/single-spa-inspector" target="_blank">browser extension</a> that hooks into your browser's dev tools.
 The extension allows you to view and control single-spa applications on any web page that uses single-spa. Feel free to download the extension, in addition
 to using the single-spa playground. The two complement each other.

@@ -19,7 +19,7 @@ export default function Introduction(props) {
         <section>
           Single-spa also has a{" "}
           <a
-            href="https://github.com/CanopyTax/single-spa-inspector"
+            href="https://github.com/single-spa/single-spa-inspector"
             target="_blank"
           >
             browser extension
@@ -58,14 +58,14 @@ export default function Introduction(props) {
           ,{" "}
           <a
             target="_blank"
-            href="https://github.com/CanopyTax/single-spa-playground/pulls"
+            href="https://github.com/single-spa/single-spa-playground/pulls"
           >
             opening a pull request
           </a>
           , or{" "}
           <a
             target="_blank"
-            href="https://github.com/CanopyTax/single-spa-playground/issues"
+            href="https://github.com/single-spa/single-spa-playground/issues"
           >
             filing an issue.
           </a>
