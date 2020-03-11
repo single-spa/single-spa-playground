@@ -89,21 +89,21 @@ function useCode() {
           app => `
           "${app.name}": "${appUrls[app.name]}",`
         )}
-          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.4.1/lib/system/single-spa.min.js"
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js"
         }
       }
     </script>
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@4.4.1/lib/system/single-spa.min.js" as="script" crossorigin="anonymous" />${
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js" as="script" crossorigin="anonymous" />${
       needsZone
         ? `
     <script src="https://cdn.jsdelivr.net/npm/zone.js/dist/zone.min.js"></script>`
         : ``
     }
-    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.10.1/dist/import-map-overrides.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.9/dist/system.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.9/dist/extras/amd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.9/dist/extras/named-exports.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.1.9/dist/extras/named-register.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.12.0/dist/import-map-overrides.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.5/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.5/dist/extras/amd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.5/dist/extras/named-exports.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.2.5/dist/extras/named-register.min.js"></script>
   </head>
   <body>
     <script>
