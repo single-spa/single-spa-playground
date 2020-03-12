@@ -69,7 +69,7 @@ export default function Sidebar(props) {
           <div key={app.name}>
             <li>
               <NavLink
-                to={`/app/${app.name}`}
+                to={`/app/${encodeURIComponent(app.name)}`}
                 className="nav-link"
                 activeClassName="active"
                 onClick={maybeHideSidebar}

@@ -60,7 +60,7 @@ export default function ImportMap(props) {
           </Link>
           {applications.length > 0 && (
             <Link
-              to={`/app/${applications[0].name}`}
+              to={`/app/${encodeURIComponent(applications[0].name)}`}
               className="primary button"
             >
               Next step: test it out

@@ -23,7 +23,9 @@ const stepComponents = [
 
 export default function TestApp(props) {
   const { applications } = useContext(LocalStorageContext);
-  const app = applications.find(a => a.name === props.match.params.appName);
+  const app = applications.find(
+    a => a.name === decodeURIComponent(props.match.params.appName)
+  );
   const scope = useCss(css);
   const nextTestRef = useRef(null);
   const [nextTestIndex, setNextTestIndex] = useState(0);
