@@ -11,6 +11,13 @@ export default function Root(props) {
   const localStorageData = useLocalStorageData();
 
   useEffect(() => {
+    const overridesTrigger = document.querySelector(".imo-trigger");
+    if (overridesTrigger) {
+      overridesTrigger.style.zIndex = "1000000";
+    }
+  });
+
+  useEffect(() => {
     window.addEventListener("single-spa:routing-event", routeChange);
     return () =>
       window.removeEventListener("single-spa:routing-event", routeChange);
