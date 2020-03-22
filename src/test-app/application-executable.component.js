@@ -9,7 +9,7 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
     ref.current = {
       runTest() {
         /* global System */
-        return System.import(props.app.name).catch(err => {
+        return System.import(props.app.name).catch((err) => {
           console.error(err);
           setError(err);
           throw err;
@@ -17,7 +17,7 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
       },
       resetError() {
         setError(null);
-      }
+      },
     };
   }
 

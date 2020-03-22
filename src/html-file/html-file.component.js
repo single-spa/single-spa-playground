@@ -72,7 +72,7 @@ function useCode() {
   const { applications } = useContext(LocalStorageContext);
 
   const appUrls = window.importMapOverrides.getOverrideMap().imports;
-  const needsZone = applications.some(app => app.framework === "angular");
+  const needsZone = applications.some((app) => app.framework === "angular");
 
   const code = `
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ function useCode() {
     <script type="systemjs-importmap">
       {
         "imports": {${applications.map(
-          app => `
+          (app) => `
           "${app.name}": "${appUrls[app.name]}",`
         )}
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js"
@@ -108,7 +108,7 @@ function useCode() {
   <body>
     <script>
       System.import('single-spa').then(function (singleSpa) {${applications.map(
-        app => `
+        (app) => `
         singleSpa.registerApplication(
           '${app.name}',
           () => System.import('${app.name}'),

@@ -41,19 +41,19 @@ export default function Root(props) {
 
   useEffect(() => {
     Promise.all(
-      getAppNames().map(appName =>
+      getAppNames().map((appName) =>
         window.__SINGLE_SPA_DEVTOOLS__.exposedMethods.unregisterApplication(
           appName
         )
       )
     ).then(() => {
       if (!showPlayground) {
-        localStorageData.applications.forEach(app => {
+        localStorageData.applications.forEach((app) => {
           /* global System */
           registerApplication(
             app.name,
             () => System.import(app.name),
-            location => location.pathname.startsWith(app.pathPrefix)
+            (location) => location.pathname.startsWith(app.pathPrefix)
           );
         });
       }

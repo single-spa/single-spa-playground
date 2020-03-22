@@ -29,7 +29,7 @@ export default forwardRef(function Remounting({ app, stepNumber }, ref) {
               app.name
             );
           })
-          .catch(err => {
+          .catch((err) => {
             setError(err);
             throw err;
           });
@@ -40,7 +40,7 @@ export default forwardRef(function Remounting({ app, stepNumber }, ref) {
         window.__SINGLE_SPA_DEVTOOLS__.exposedMethods.unregisterApplication(
           app.name
         );
-      }
+      },
     };
   }
 

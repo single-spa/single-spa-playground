@@ -13,7 +13,7 @@ export default React.forwardRef(function ApplicationDownloadable(
       runTest,
       resetError() {
         setError(false);
-      }
+      },
     };
   }
 
@@ -44,7 +44,7 @@ export default React.forwardRef(function ApplicationDownloadable(
 
   function runTest() {
     return fetch(window.importMapOverrides.getOverrideMap().imports[app.name])
-      .then(resp => {
+      .then((resp) => {
         if (resp.ok) {
           const contentType = resp.headers.get("content-type");
           if (!contentType.includes("application/javascript")) {
@@ -58,7 +58,7 @@ export default React.forwardRef(function ApplicationDownloadable(
           );
         }
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err);
         throw err;
       });

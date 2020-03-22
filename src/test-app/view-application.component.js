@@ -16,11 +16,11 @@ export default forwardRef(function ViewApplication({ app, stepNumber }, ref) {
             registerApplication(
               app.name,
               () => System.import(app.name),
-              location => location.pathname.startsWith(app.pathPrefix)
+              (location) => location.pathname.startsWith(app.pathPrefix)
             );
             window.history.pushState({}, document.title, app.pathPrefix);
           })
-          .catch(err => {
+          .catch((err) => {
             setError(err);
             throw err;
           });
@@ -31,7 +31,7 @@ export default forwardRef(function ViewApplication({ app, stepNumber }, ref) {
         window.__SINGLE_SPA_DEVTOOLS__.exposedMethods.unregisterApplication(
           app.name
         );
-      }
+      },
     };
   }
 

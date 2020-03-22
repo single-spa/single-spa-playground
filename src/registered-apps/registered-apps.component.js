@@ -54,7 +54,7 @@ export default function RegisteredApps(props) {
             <EditApplication addApp={addAndClose} cancel={cancelAdd} />
           )}
         </section>
-        {applications.map(app =>
+        {applications.map((app) =>
           app.name === nameOfAppEditing ? (
             <EditApplication
               key={app.name}

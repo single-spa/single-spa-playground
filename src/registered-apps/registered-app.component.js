@@ -81,7 +81,7 @@ const css = `
 }
 `;
 
-const indentedCode = app =>
+const indentedCode = (app) =>
   `
 singleSpa.registerApplication(
   '${app.name}',

@@ -8,7 +8,7 @@ export default function InstantTest(props) {
     applications,
     addApplication,
     updateApplication,
-    resetApplications
+    resetApplications,
   } = React.useContext(LocalStorageContext);
 
   React.useEffect(() => {
@@ -19,7 +19,7 @@ export default function InstantTest(props) {
     resetApplications();
 
     const app = { name: params.get("name"), pathPrefix: "/" };
-    if (applications.some(app => app.name === params.get("name"))) {
+    if (applications.some((app) => app.name === params.get("name"))) {
       updateApplication(app, params.get("name"));
     } else {
       addApplication(app);

@@ -18,13 +18,13 @@ const stepComponents = [
   LifecyclesExported,
   MountLifecycle,
   UnmountLifecycle,
-  Remounting
+  Remounting,
 ];
 
 export default function TestApp(props) {
   const { applications } = useContext(LocalStorageContext);
   const app = applications.find(
-    a => a.name === decodeURIComponent(props.match.params.appName)
+    (a) => a.name === decodeURIComponent(props.match.params.appName)
   );
   const scope = useCss(css);
   const nextTestRef = useRef(null);
@@ -41,7 +41,7 @@ export default function TestApp(props) {
           setRunningTest(false);
           setNextTestIndex(nextTestIndex + 1);
         })
-        .catch(err => {
+        .catch((err) => {
           setRunningTest(false);
           setErrorIndex(nextTestIndex);
         });

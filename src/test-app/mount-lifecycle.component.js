@@ -4,12 +4,12 @@ import {
   triggerAppChange,
   getAppStatus,
   MOUNTED,
-  getAppNames
+  getAppNames,
 } from "single-spa";
 import CodeOutput from "../shared/code-output.component";
 
 export let shouldMount = false;
-export const setShouldMount = val => (shouldMount = val);
+export const setShouldMount = (val) => (shouldMount = val);
 
 export default React.forwardRef(function MountLifecycle(
   { app, stepNumber },
@@ -25,7 +25,7 @@ export default React.forwardRef(function MountLifecycle(
   if (ref) {
     ref.current = {
       runTest() {
-        if (getAppNames().some(name => name === app.name)) {
+        if (getAppNames().some((name) => name === app.name)) {
           window.__SINGLE_SPA_DEVTOOLS__.exposedMethods.unregisterApplication(
             app.name
           );
@@ -51,7 +51,7 @@ export default React.forwardRef(function MountLifecycle(
               );
             }
           })
-          .catch(err => {
+          .catch((err) => {
             setError(err);
             throw err;
           });
@@ -62,7 +62,7 @@ export default React.forwardRef(function MountLifecycle(
         window.__SINGLE_SPA_DEVTOOLS__.exposedMethods.unregisterApplication(
           app.name
         );
-      }
+      },
     };
   }
 

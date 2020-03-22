@@ -24,14 +24,14 @@ export default React.forwardRef(function UnmountLifecycle(
               );
             }
           })
-          .catch(err => {
+          .catch((err) => {
             setError(err);
             throw err;
           });
       },
       resetError() {
         setError(null);
-      }
+      },
     };
   }
 
