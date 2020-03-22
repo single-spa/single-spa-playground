@@ -93,7 +93,7 @@
       }
       const playgroundData = localStorage.getItem("single-spa-playground");
       if (playgroundData && playgroundData.includes("angular")) {
-        const globalDefine = window.globalDefine;
+        const globalDefine = window.define;
         delete window.define;
         const zoneEl = document.createElement("script");
         zoneEl.src = "https://unpkg.com/zone.js";
