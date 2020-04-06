@@ -14,15 +14,19 @@
       {
         "imports": {
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js",
-          "single-spa-playground": "/assets/single-spa-playground.js"
+          "single-spa-playground": "/assets/single-spa-playground.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
+          "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.1.6/dist/vue-router.min.js",
+          "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"
         }
       }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-register.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-register.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
@@ -58,18 +62,15 @@
       // When the single page app is loaded further down in this file,
       // the correct url will be waiting in the browser's history for
       // the single page app to route accordingly.
-      (function(l) {
+      (function (l) {
         if (l.search) {
           var q = {};
           l.search
             .slice(1)
             .split("&")
-            .forEach(function(v) {
+            .forEach(function (v) {
               var a = v.split("=");
-              q[a[0]] = a
-                .slice(1)
-                .join("=")
-                .replace(/~and~/g, "&");
+              q[a[0]] = a.slice(1).join("=").replace(/~and~/g, "&");
             });
           if (q.p !== undefined) {
             window.history.replaceState(
@@ -92,7 +93,7 @@
       }
       const playgroundData = localStorage.getItem("single-spa-playground");
       if (playgroundData && playgroundData.includes("angular")) {
-        const globalDefine = window.globalDefine;
+        const globalDefine = window.define;
         delete window.define;
         const zoneEl = document.createElement("script");
         zoneEl.src = "https://unpkg.com/zone.js";

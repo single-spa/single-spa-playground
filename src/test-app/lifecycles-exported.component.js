@@ -10,7 +10,7 @@ export default React.forwardRef(function LifecycleExports(props, ref) {
       runTest() {
         /* global System */
         return System.import(props.app.name)
-          .then(mod => {
+          .then((mod) => {
             if (
               typeof mod.bootstrap !== "function" ||
               typeof mod.mount !== "function" ||
@@ -25,14 +25,14 @@ export default React.forwardRef(function LifecycleExports(props, ref) {
               );
             }
           })
-          .catch(err => {
+          .catch((err) => {
             setError(err);
             throw err;
           });
       },
       resetError() {
         setError(null);
-      }
+      },
     };
   }
 

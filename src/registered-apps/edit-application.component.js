@@ -5,7 +5,7 @@ export default function EditApplication({
   app = {},
   updateApp,
   addApp,
-  cancel
+  cancel,
 }) {
   const [framework, setFramework] = useState(app.framework || "");
   const [name, setName] = useState(app.name || "");
@@ -49,7 +49,7 @@ export default function EditApplication({
           <input
             type="text"
             value={name}
-            onChange={evt => setName(evt.target.value)}
+            onChange={(evt) => setName(evt.target.value)}
             placeholder="app1"
             aria-labelledby={nameLabel}
             required
@@ -63,7 +63,7 @@ export default function EditApplication({
           <input
             type="text"
             value={url}
-            onChange={evt => setUrl(evt.target.value)}
+            onChange={(evt) => setUrl(evt.target.value)}
             placeholder="http://localhost:8080/app1.js"
             aria-labelledby={urlLabel}
             required
@@ -77,7 +77,7 @@ export default function EditApplication({
           <input
             type="text"
             value={pathPrefix}
-            onChange={evt => setPathPrefix(evt.target.value)}
+            onChange={(evt) => setPathPrefix(evt.target.value)}
             placeholder="/app1"
             aria-labelledby={pathPrefixLabel}
             required
@@ -101,7 +101,7 @@ export default function EditApplication({
     const appToSave = {
       framework,
       name,
-      pathPrefix
+      pathPrefix,
     };
     app.name ? updateApp(appToSave, url, app.name) : addApp(appToSave, url);
   }

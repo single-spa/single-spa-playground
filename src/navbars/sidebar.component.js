@@ -65,7 +65,7 @@ export default function Sidebar(props) {
             </NavLink>
           </li>
         </div>
-        {applications.map(app => (
+        {applications.map((app) => (
           <div key={app.name}>
             <li>
               <NavLink

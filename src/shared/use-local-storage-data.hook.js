@@ -9,7 +9,7 @@ export default function useLocalStorageData() {
     updateApplication(app, name) {
       setData({
         ...data,
-        applications: data.applications.map(a => (a.name === name ? app : a))
+        applications: data.applications.map((a) => (a.name === name ? app : a)),
       });
       window.importMapOverrides.addOverride(app.name, app.url);
     },
@@ -17,21 +17,21 @@ export default function useLocalStorageData() {
     addApplication(app) {
       setData({
         ...data,
-        applications: [...data.applications, app]
+        applications: [...data.applications, app],
       });
       window.importMapOverrides.addOverride(app.name, app.url);
     },
     removeApplication(appName) {
       setData({
         ...data,
-        applications: data.applications.filter(a => a.name !== appName)
+        applications: data.applications.filter((a) => a.name !== appName),
       });
       window.importMapOverrides.removeOverride(appName);
     },
     resetApplications() {
       setData(emptyData);
       window.importMapOverrides.resetOverrides();
-    }
+    },
   };
 
   function setData(data) {
@@ -51,5 +51,5 @@ function getDataFromLocalStorage() {
 }
 
 const emptyData = {
-  applications: []
+  applications: [],
 };

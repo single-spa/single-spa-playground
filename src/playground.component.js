@@ -1,7 +1,7 @@
 import React from "react";
 import Styleguide, {
   mediaMobile,
-  mediaDesktop
+  mediaDesktop,
 } from "./styleguide/styleguide.component";
 import { useCss } from "kremling";
 import { Route } from "react-router";
@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import Introduction from "./introduction/introduction.component";
 import RegisteredApplications from "./registered-apps/registered-apps.component";
 import useLocalStorageData, {
-  LocalStorageContext
+  LocalStorageContext,
 } from "./shared/use-local-storage-data.hook";
 import TestApp from "./test-app/test-app.component";
 import Navbars from "./navbars/navbars.component";
