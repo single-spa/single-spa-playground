@@ -15,6 +15,7 @@ import TestApp from "./test-app/test-app.component";
 import Navbars from "./navbars/navbars.component";
 import ImportMap from "./import-map/import-map.component";
 import HtmlFile from "./html-file/html-file.component";
+import RootConfig from "./root-config/root-config.component";
 import Stuck from "./stuck/stuck.component";
 import InstantTest from "./instant-test/instant-test.component";
 
@@ -35,8 +36,10 @@ export default function Playground(props) {
                   path="/registered-apps"
                   component={RegisteredApplications}
                 />
+                <Route path="/verify-single-spa-app" component={TestApp} />
                 <Route path="/import-map" component={ImportMap} />
                 <Route path="/app/:appName" component={TestApp} />
+                <Route path="/root-config" component={RootConfig} />
                 <Route path="/html-file" component={HtmlFile} />
                 <Route path="/stuck" component={Stuck} />
                 <Route path="/instant-test" component={InstantTest} />
@@ -56,7 +59,7 @@ const css = `
   top: 0;
   left: 0;
   width: 100vw;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   padding-bottom: 3.2rem;
 }
 
@@ -67,7 +70,7 @@ body {
 }
 
 & .playground * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 & .centered-content {

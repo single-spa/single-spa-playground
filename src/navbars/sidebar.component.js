@@ -49,11 +49,11 @@ export default function Sidebar(props) {
               activeClassName="active"
               onClick={maybeHideSidebar}
             >
-              <div>Registered Applications</div>
+              <div>single-spa applications</div>
             </NavLink>
           </li>
         </div>
-        <div>
+        {/* <div>
           <li>
             <NavLink
               to="/import-map"
@@ -64,8 +64,8 @@ export default function Sidebar(props) {
               <div>Import Map</div>
             </NavLink>
           </li>
-        </div>
-        {applications.map((app) => (
+        </div> */}
+        {/* {applications.map((app) => (
           <div key={app.name}>
             <li>
               <NavLink
@@ -78,16 +78,28 @@ export default function Sidebar(props) {
               </NavLink>
             </li>
           </div>
-        ))}
+        ))} */}
         <div>
           <li>
             <NavLink
-              to="/html-file"
+              to="/verify-single-spa-app"
               className="nav-link"
               activeClassName="active"
               onClick={maybeHideSidebar}
             >
-              <div>HTML file</div>
+              <div>verify single-spa app</div>
+            </NavLink>
+          </li>
+        </div>
+        <div>
+          <li>
+            <NavLink
+              to="/root-config"
+              className="nav-link"
+              activeClassName="active"
+              onClick={maybeHideSidebar}
+            >
+              <div>root-config</div>
             </NavLink>
           </li>
         </div>

@@ -48,14 +48,13 @@ export default function Root(props) {
       )
     ).then(() => {
       if (!showPlayground) {
-        localStorageData.applications.forEach((app) => {
-          /* global System */
-          registerApplication(
-            app.name,
-            () => System.import(app.name),
-            (location) => location.pathname.startsWith(app.pathPrefix)
-          );
-        });
+        const { application } = localStorageData;
+        /* global System */
+        registerApplication(
+          application.name,
+          () => System.import(application.name),
+          (location) => location.pathname.startsWith(application.pathPrefix)
+        );
       }
     });
   }, [showPlayground]);

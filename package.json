@@ -36,6 +36,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "file-loader": "^6.0.0",
     "kremling": "^2.0.3",
     "lodash-es": "^4.17.15",
     "react": "^16.13.1",

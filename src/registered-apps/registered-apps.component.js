@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useState } from "react";
 import PageHeader from "../shared/page-header.component";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
@@ -5,104 +7,97 @@ import RegisteredApp from "./registered-app.component";
 import EditApplication from "./edit-application.component";
 import { useCss } from "kremling";
 import { Link } from "react-router-dom";
+import createSingleSpaCli from "./create-single-spa-cli.gif";
+import Code from "../shared/code.component";
 
 export default function RegisteredApps(props) {
   const { applications, addApplication, updateApplication } = useContext(
     LocalStorageContext
   );
-  const [addingNewApplication, setAddingNewApplication] = useState(
-    applications.length === 0
-  );
-  const [nameOfAppEditing, setNameOfAppEditing] = useState(null);
+
   const scope = useCss(css);
 
   return (
     <>
-      <PageHeader title="Registered applications" />
+      <PageHeader title="single-spa applications" />
       <article className="card" {...scope}>
         <section>
           A{" "}
           <a href="https://single-spa.js.org/docs/building-applications.html">
             single-spa-application
           </a>{" "}
-          is a micro-frontend that is in charge of certain url routes. You need
-          to{" "}
+          is everything a normal SPA is, but it doesn't have to attach itself in
+          the DOM as single-spa will handle this for you! You just need to{" "}
           <a href="https://single-spa.js.org/docs/api.html#registerapplication">
-            register these with single-spa
+            register your applications with single-spa
           </a>{" "}
-          so that single-spa can make sure the right applications are active for
-          any particular url.
+          so that single-spa can make sure the right one is active for any
+          particular url.
         </section>
-        <h3>Your single-spa applications</h3>
-        <section className="call-to-action">
-          <div>
-            {applications.length === 0
-              ? `Let's add your first single-spa application.`
-              : `Click on any application to edit or test it.`}
+        <h3>Creating your first single-spa application</h3>
+        <section>
+          You can do this from scratch, but we highly recommend you to start
+          from our{" "}
+          <a href="https://single-spa.js.org/docs/create-single-spa">
+            create-single-spa
+          </a>{" "}
+          CLI to setup your first application!
+          <div style={{ textAlign: "center" }}>
+            <img src={createSingleSpaCli} style={{ width: 500, margin: 8 }} />
           </div>
-          {!addingNewApplication && !nameOfAppEditing && (
-            <button
-              className="primary"
-              onClick={() => setAddingNewApplication(true)}
-            >
-              Create app
-            </button>
-          )}
-        </section>
-        <section className="add-application">
-          {addingNewApplication && (
-            <EditApplication addApp={addAndClose} cancel={cancelAdd} />
-          )}
-        </section>
-        {applications.map((app) =>
-          app.name === nameOfAppEditing ? (
-            <EditApplication
-              key={app.name}
-              app={app}
-              updateApp={updateApp}
-              cancel={() => setNameOfAppEditing(null)}
-            />
-          ) : (
-            <RegisteredApp
-              key={app.name}
-              app={app}
-              edit={() => setNameOfAppEditing(app.name)}
-              interactive={true}
-            />
-          )
-        )}
-        {!addingNewApplication && !nameOfAppEditing && (
+          <p>
+            By itself, your single-spa application cannot be ran on browser.
+            After all, who will attach it to the DOM and bootstrap everything?
+            Well, <b>anyone</b> using single-spa{" "}
+            <a href="https://single-spa.js.org/docs/api.html#registerapplication">
+              registerApplication
+            </a>{" "}
+            and referencing your app!
+          </p>
+          <p>Remember the last 2 steps?</p>
+          <Code
+            code={`
+Project setup complete!
+Steps to test your React single-spa application:
+1. Run 'yarn start --https --port 8500'
+2. Go to https://single-spa-playground.org/playground/instant-test?name=@org/app&url=8500 to see it working!
+          `}
+          />
+          <CollapsableContent title="The first is to start your webpack-dev-server using https">
+            <>
+              <h3>Do I need https?</h3>
+            </>
+            <p>
+              No, not at all! The only reason we ask you to run https is so that
+              this playground (which is also on https) can download your assets
+              being served by your webpack-dev-server! If you don't start it on
+              --https, sadly, the security will kick in and block the asset
+              download. When running both root-config and applications in your
+              localhost, you don't actually need to run in https!
+            </p>
+          </CollapsableContent>
+          The second is a redirect to this playground, so we can bootstrap your
+          single-spa application for you! And there it is! You have a single-spa
+          application, being served by your localhost, and being run in a
+          deployed application!
+          <p>Welcome to the microfrontend era!</p>
+          <p>
+            Before we guide you into making the{" "}
+            <a href="https://single-spa.js.org/docs/configuration">
+              root-config
+            </a>{" "}
+            so you can locally bootstrap your application, we will validate your
+            brand new single-spa application!
+          </p>
           <section className="actions next-step">
-            <Link to="/import-map" className="button primary">
-              Next step: Import Map
+            <Link to="/verify-single-spa-app" className="button primary">
+              Next step: Validate single-spa application
             </Link>
           </section>
-        )}
+        </section>
       </article>
     </>
   );
-
-  function addAndClose(app, url) {
-    setAddingNewApplication(false);
-    addApplication(app);
-    window.importMapOverrides.addOverride(app.name, url);
-  }
-
-  function cancelAdd() {
-    setAddingNewApplication(false);
-  }
-
-  function updateApp(app, url, oldName) {
-    updateApplication(app, oldName);
-    setNameOfAppEditing(null);
-    const oldUrl = window.importMapOverrides.getOverrideMap().imports[app.name];
-    if (oldUrl !== url) {
-      window.importMapOverrides.removeOverride(oldName);
-      window.importMapOverrides.addOverride(app.name, url);
-      // Changes to the import map require a page reload
-      window.location.reload();
-    }
-  }
 }
 
 const css = `
@@ -118,4 +113,32 @@ const css = `
 & .next-step {
   margin-top: 1.6rem;
 }
+`;
+
+function CollapsableContent({ title, children }) {
+  const [visible, setVisible] = useState(false);
+  const scope = useCss(collapseCss);
+
+  return (
+    <>
+      <p {...scope}>
+        {title}{" "}
+        <span
+          className="toggle"
+          onClick={() => setVisible((visible) => !visible)}
+        >
+          ({visible ? "hide" : "more"})
+        </span>
+      </p>
+      <blockquote>{visible ? children : null}</blockquote>
+    </>
+  );
+}
+
+const collapseCss = `
+  & .toggle {
+    cursor: pointer;
+    color: var(--single-spa-blue);
+  }
+
 `;

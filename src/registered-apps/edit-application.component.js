@@ -28,7 +28,7 @@ export default function EditApplication({
       className="application-form"
       autoComplete="off"
     >
-      <div>
+      {/* <div>
         <label>
           <div>Framework</div>
           <select
@@ -42,7 +42,7 @@ export default function EditApplication({
             <option value="angular">Angular</option>
           </select>
         </label>
-      </div>
+      </div> */}
       <div>
         <label>
           <div>Application Name</div>
@@ -50,7 +50,7 @@ export default function EditApplication({
             type="text"
             value={name}
             onChange={(evt) => setName(evt.target.value)}
-            placeholder="app1"
+            placeholder="@org/package_name"
             aria-labelledby={nameLabel}
             required
             autoComplete="off"
@@ -99,7 +99,7 @@ export default function EditApplication({
   function handleSubmit(evt) {
     evt.preventDefault();
     const appToSave = {
-      framework,
+      // framework,
       name,
       pathPrefix,
     };

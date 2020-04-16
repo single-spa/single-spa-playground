@@ -69,10 +69,10 @@ export default function HtmlFile(props) {
 }
 
 function useCode() {
-  const { applications } = useContext(LocalStorageContext);
+  const { application } = useContext(LocalStorageContext);
 
   const appUrls = window.importMapOverrides.getOverrideMap().imports;
-  const needsZone = applications.some((app) => app.framework === "angular");
+  const needsZone = application.framework === "angular";
 
   const code = `
 <!DOCTYPE html>
@@ -85,7 +85,7 @@ function useCode() {
     <meta name="importmap-type" content="systemjs-importmap">
     <script type="systemjs-importmap">
       {
-        "imports": {${applications.map(
+        "imports": {${[application].map(
           (app) => `
           "${app.name}": "${appUrls[app.name]}",`
         )}
@@ -107,7 +107,9 @@ function useCode() {
   </head>
   <body>
     <script>
-      System.import('single-spa').then(function (singleSpa) {${applications.map(
+      System.import('single-spa').then(function (singleSpa) {${[
+        application,
+      ].map(
         (app) => `
         singleSpa.registerApplication(
           '${app.name}',

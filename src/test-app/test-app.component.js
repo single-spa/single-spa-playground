@@ -3,69 +3,69 @@ import PageHeader from "../shared/page-header.component";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 import { Redirect, Link } from "react-router-dom";
 import { useCss } from "kremling";
-import ApplicationDownloadable from "./application-downloadable.component";
-import ApplicationExecutable from "./application-executable.component";
-import LifecyclesExported from "./lifecycles-exported.component";
-import MountLifecycle from "./mount-lifecycle.component";
-import UnmountLifecycle from "./unmount-lifecycle.component";
-import Remounting from "./remounting.component";
 import RegisteredApp from "../registered-apps/registered-app.component";
 import { navigateToUrl } from "single-spa";
-
-const stepComponents = [
-  ApplicationDownloadable,
-  ApplicationExecutable,
-  LifecyclesExported,
-  MountLifecycle,
-  UnmountLifecycle,
-  Remounting,
-];
+import VerificationSteps from "./verification-steps.component";
+import EditApplication from "../registered-apps/edit-application.component";
 
 export default function TestApp(props) {
-  const { applications } = useContext(LocalStorageContext);
-  const app = applications.find(
-    (a) => a.name === decodeURIComponent(props.match.params.appName)
+  const { application, addApplication, updateApplication } = useContext(
+    LocalStorageContext
   );
+
   const scope = useCss(css);
-  const nextTestRef = useRef(null);
-  const [nextTestIndex, setNextTestIndex] = useState(0);
-  const [errorIndex, setErrorIndex] = useState(null);
-  const [runningTest, setRunningTest] = useState(false);
-  const [restartingTests, setRestartingTests] = useState(false);
 
-  useEffect(() => {
-    if (runningTest) {
-      nextTestRef.current
-        .runTest()
-        .then(() => {
-          setRunningTest(false);
-          setNextTestIndex(nextTestIndex + 1);
-        })
-        .catch((err) => {
-          setRunningTest(false);
-          setErrorIndex(nextTestIndex);
-        });
-    }
-  }, [runningTest, nextTestIndex]);
-
-  useEffect(() => {
-    if (restartingTests) {
-      const timeoutId = setTimeout(() => {
-        setRestartingTests(false);
-        setRunningTest(true);
-      }, 500);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [restartingTests]);
+  const [showVerificationSteps, setShowVerificationSteps] = useState(false);
+  const [showRegisterApp, setShowRegisterApp] = useState(false);
+  const [isEditingApp, setIsEditingApp] = useState(false);
 
   return (
     <>
-      {!app && <Redirect to="/registered-apps" />}
-      <PageHeader title={`Application: ${app.name}`} />
+      <PageHeader title="Validate single-spa application" />
       <article className="card" {...scope}>
         <section>
-          Let's get {app.name} working. If you get stuck, feel free to ask a
-          question in our{" "}
+          If you came from the redirect from create-single-spa, your app should
+          be already registered in this playground! But you can always register
+          another one, so you can validate any single-spa application.
+        </section>
+        {application && (
+          <>
+            <section>
+              This configuration example, is what make it possible to run your
+              local single-spa application in this playground:
+            </section>
+            <section>
+              <RegisteredApp app={application} edit={edit} interactive />
+            </section>
+
+            {isEditingApp && (
+              <section>
+                <EditApplication
+                  app={isEditingApp ? application : null}
+                  cancel={() => setIsEditingApp(false)}
+                  updateApp={updateApp}
+                />
+              </section>
+            )}
+            <section>
+              You can also verify if your application is working by{" "}
+              <a
+                target="_blank"
+                href={application.pathPrefix}
+                href={application.pathPrefix}
+                onClick={navigateToUrl}
+              >
+                {" "}
+                using the playground
+              </a>
+              . This will let you see your application working inside of this
+              browser tab. The single-spa playground will disappear, and your
+              code will take over. To comeback, just click the single-spa logo!
+            </section>
+          </>
+        )}
+        <section>
+          Got stuck? you can always hit us in our{" "}
           <a
             target="_blank"
             href="https://join.slack.com/t/single-spa/shared_invite/enQtODAwNTIyMzc4OTE1LWUxMTUwY2M1MTY0ZGMzOTUzMGNkMzI1NzRiYzYwOWM1MTEzZDM1NDAyNWM3ZmViOTAzZThkMDcwMWZmNTFmMWQ"
@@ -80,113 +80,89 @@ export default function TestApp(props) {
             file a github issue
           </a>
         </section>
+
         <section>
-          <RegisteredApp app={app} interactive={false} />
+          <div style={{ margin: "16px 0" }}>
+            {!application && (
+              <button
+                className="secondary"
+                type="button"
+                onClick={() => setShowRegisterApp(true)}
+              >
+                {`Register app`}
+              </button>
+            )}
+          </div>
         </section>
-        <section>
-          Download url:{" "}
-          <a
-            href={window.importMapOverrides.getOverrideMap().imports[app.name]}
-            target="_blank"
-          >
-            {window.importMapOverrides.getOverrideMap().imports[app.name]}
-          </a>
-        </section>
-        <section>
-          {nextTestIndex >= stepComponents.length ? (
-            <div className="congrats">
-              {"\u2713 Congrats! Your application is working!"}
-            </div>
-          ) : (
-            <button
-              className="primary"
-              type="button"
-              onClick={doTest}
-              style={{ visibility: restartingTests ? "hidden" : "visible" }}
-            >
-              {buttonText()}
-            </button>
-          )}
-        </section>
-        <section>
-          {stepComponents.map((Step, index) => (
-            <div className={getStepStatusClass(index)} key={index}>
-              <Step
-                app={app}
-                stepNumber={index}
-                ref={index === nextTestIndex ? nextTestRef : null}
-              />
-              {index < stepComponents.length - 1 && (
-                <div className="between-steps"></div>
-              )}
-            </div>
-          ))}
-        </section>
-        <section>
-          You can also verify if your application is working by navigating this
-          browser tab to the url that it is in charge of. This will let you see
-          your application working inside of this browser tab. The single-spa
-          playground will disappear, and your code will take over.
-        </section>
-        <section>
-          To do this, click on the navigate to application link. You can come
-          back to the playground by clicking on the blue single-spa logo that
-          will appear in the bottom right of your screen. Once you've verified
-          things are working as expected, proceed to the next step.
-        </section>
-        <section>
-          <a
-            className="secondary button"
-            href={app.pathPrefix}
-            onClick={navigateToUrl}
-          >
-            Navigate to application
-          </a>
-          <Link to="/html-file" className="primary button">
-            Next step: HTML file
-          </Link>
-        </section>
+        {showRegisterApp && (
+          <EditApplication
+            addApp={addAndClose}
+            cancel={() => setShowRegisterApp(false)}
+            updateApp={updateApp}
+          />
+        )}
+
+        {application && (
+          <>
+            <section>
+              Now, lets verify if your application is ready to go! If you came
+              from create-single-spa, this should work out-of-the-box, but you
+              can always come back when you customized and evolved you
+              single-spa application to check if it still conforms to single-spa
+              API
+            </section>
+            <section>
+              <button
+                className="primary"
+                type="button"
+                onClick={() => {
+                  setShowVerificationSteps(true);
+                  setShowRegisterApp(false);
+                }}
+              >
+                {`Verify "${application.name}"`}
+              </button>
+            </section>
+
+            {showVerificationSteps && <VerificationSteps app={application} />}
+
+            <section>
+              Once you've verified things are working as expected, proceed to
+              the next step.
+            </section>
+            <section>
+              <Link to="/root-config" className="primary button">
+                Next step: root-config
+              </Link>
+            </section>
+          </>
+        )}
       </article>
     </>
   );
 
-  function getStepStatusClass(stepIndex) {
-    if (stepIndex < nextTestIndex) {
-      return "completed";
-    } else if (stepIndex === nextTestIndex) {
-      if (stepIndex === errorIndex) {
-        return "error";
-      } else {
-        return "next";
-      }
-    } else {
-      if (typeof errorIndex === "number") {
-        return "error-before-step";
-      } else {
-        return "queued";
-      }
-    }
+  function edit(app) {
+    setIsEditingApp(true);
   }
 
-  function buttonText() {
-    if (errorIndex !== null) {
-      return "Restart test";
-    } else if (nextTestIndex === 0) {
-      return "Start test";
-    } else {
-      return "Continue test";
+  function updateApp(app, url, oldName) {
+    updateApplication(app);
+    const oldUrl = window.importMapOverrides.getOverrideMap().imports[app.name];
+    if (oldUrl !== url) {
+      window.importMapOverrides.removeOverride(oldName);
+      window.importMapOverrides.addOverride(app.name, url);
+      // Changes to the import map require a page reload
+      window.location.reload();
     }
+    setIsEditingApp(false);
   }
 
-  function doTest() {
-    if (errorIndex !== null) {
-      nextTestRef.current.resetError();
-      setErrorIndex(null);
-      setNextTestIndex(0);
-      setRestartingTests(true);
-    } else {
-      setRunningTest(true);
-    }
+  function addAndClose(app, url) {
+    window.importMapOverrides.addOverride(app.name, url);
+    app.url = url;
+    addApplication(app);
+    // window.location.reload();
+    setShowRegisterApp(false);
   }
 }
 

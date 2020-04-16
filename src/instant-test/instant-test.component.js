@@ -5,10 +5,10 @@ export default function InstantTest(props) {
   const params = new URLSearchParams(location.search);
   const isValid = params.has("name") && params.has("url");
   const {
-    applications,
+    // applications,
     addApplication,
     updateApplication,
-    resetApplications,
+    // resetApplications,
   } = React.useContext(LocalStorageContext);
 
   React.useEffect(() => {
@@ -16,14 +16,14 @@ export default function InstantTest(props) {
       return;
     }
 
-    resetApplications();
+    // resetApplications();
 
     const app = { name: params.get("name"), pathPrefix: "/" };
-    if (applications.some((app) => app.name === params.get("name"))) {
-      updateApplication(app, params.get("name"));
-    } else {
-      addApplication(app);
-    }
+    // if (applications.some((app) => app.name === params.get("name"))) {
+    //   updateApplication(app, params.get("name"));
+    // } else {
+    addApplication(app);
+    // }
 
     window.importMapOverrides.addOverride(
       params.get("name"),

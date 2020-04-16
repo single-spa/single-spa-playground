@@ -17,7 +17,7 @@ export default function Introduction(props) {
           .
         </section>
         <section>
-          Single-spa also has a{" "}
+          single-spa also has a{" "}
           <a
             href="https://github.com/single-spa/single-spa-inspector"
             target="_blank"
@@ -29,21 +29,25 @@ export default function Introduction(props) {
           applications.
         </section>
         <section>
-          The playground isn't the only way to use single-spa, but is one of the
-          easier ways. It will set you up with single-spa,{" "}
-          <a href="https://github.com/systemjs/systemjs">systemjs@6</a>, and{" "}
-          <a href="https://github.com/WICG/import-maps">import maps</a>. This
-          lets you do the following:
+          The playground will guide you to build a successful singe-spa
+          application, highlighting important steps and give tools to help you
+          understand what went wrong. Mind that this isn't the only way to use
+          single-spa, but by better understanding the concepts, you'll be able
+          to apply it in any way you like. Here's what we'll do:
           <ol>
-            <li>Have microfrontends that are in separate git repos.</li>
             <li>
-              Use different frameworks in the microfrontends, if you wish.
+              Have micro-frontends that are in separate git repos. We will be
+              focusing on React, but you could use Angular, Vue, etc
             </li>
-            <li>Deploy your microfrontends independently.</li>
+            <li>Test if your microfrontend is build up correctly</li>
             <li>
-              Not have to worry about some of the initial setup and
-              configuration.
+              Understand and create a{" "}
+              <a href="https://single-spa.js.org/docs/configuration">
+                root config
+              </a>
+              , which will do the routing of your micro-frontends
             </li>
+            <li>Deploy your micro-frontends independently.(coming soon)</li>
           </ol>
         </section>
         <section>
