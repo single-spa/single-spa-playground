@@ -4,26 +4,16 @@ import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 export default function InstantTest(props) {
   const params = new URLSearchParams(location.search);
   const isValid = params.has("name") && params.has("url");
-  const {
-    // applications,
-    addApplication,
-    updateApplication,
-    // resetApplications,
-  } = React.useContext(LocalStorageContext);
+  const { addApplication } = React.useContext(LocalStorageContext);
 
   React.useEffect(() => {
     if (!isValid) {
       return;
     }
 
-    // resetApplications();
-
     const app = { name: params.get("name"), pathPrefix: "/" };
-    // if (applications.some((app) => app.name === params.get("name"))) {
-    //   updateApplication(app, params.get("name"));
-    // } else {
+
     addApplication(app);
-    // }
 
     window.importMapOverrides.addOverride(
       params.get("name"),
@@ -31,7 +21,7 @@ export default function InstantTest(props) {
     );
 
     location.assign("/");
-  }, [isValid]);
+  }, [addApplication, isValid, params]);
 
   if (isValid) {
     return null;

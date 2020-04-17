@@ -1,14 +1,10 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useState } from "react";
-import PageHeader from "../shared/page-header.component";
-import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
-import RegisteredApp from "./registered-app.component";
-import EditApplication from "./edit-application.component";
 import { useCss } from "kremling";
 import { Link } from "react-router-dom";
 import createSingleSpaCli from "./create-single-spa-cli.gif";
 import Code from "../shared/code.component";
+import PageHeader from "../shared/page-header.component";
+import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 
 export default function RegisteredApps(props) {
   const { applications, addApplication, updateApplication } = useContext(
@@ -43,7 +39,11 @@ export default function RegisteredApps(props) {
           </a>{" "}
           CLI to setup your first application!
           <div style={{ textAlign: "center" }}>
-            <img src={createSingleSpaCli} style={{ width: 500, margin: 8 }} />
+            <img
+              src={createSingleSpaCli}
+              alt="gif explaining how to use CLI"
+              style={{ width: 500, margin: 8 }}
+            />
           </div>
           <p>
             By itself, your single-spa application cannot be ran on browser.
@@ -90,7 +90,7 @@ Steps to test your React single-spa application:
             brand new single-spa application!
           </p>
           <section className="actions next-step">
-            <Link to="/verify-single-spa-app" className="button primary">
+            <Link to="/verify-app-guide" className="button primary">
               Next step: Validate single-spa application
             </Link>
           </section>
@@ -123,12 +123,12 @@ function CollapsableContent({ title, children }) {
     <>
       <p {...scope}>
         {title}{" "}
-        <span
+        <button
           className="toggle"
           onClick={() => setVisible((visible) => !visible)}
         >
           ({visible ? "hide" : "more"})
-        </span>
+        </button>
       </p>
       <blockquote>{visible ? children : null}</blockquote>
     </>

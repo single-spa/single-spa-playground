@@ -1,33 +1,24 @@
-import React, { useState, forwardRef } from "react";
-import { triggerAppChange, getAppStatus, MOUNTED } from "single-spa";
-import CodeOutput from "../shared/code-output.component";
-import { setShouldMount } from "./mount-lifecycle.component";
+import React, { forwardRef, useState } from "react";
+import { registerApplication } from "single-spa";
+import CodeOutput from "../../shared/code-output.component";
 
-export default forwardRef(function Remounting({ app, stepNumber }, ref) {
+export default forwardRef(function ViewApplication({ app, stepNumber }, ref) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [error, setError] = useState(null);
 
   if (ref) {
     ref.current = {
       runTest() {
-        setShouldMount(true);
-        window.history.replaceState({ mountTestApp: true }, document.title);
-
-        return triggerAppChange()
+        return window.__SINGLE_SPA_DEVTOOLS__.exposedMethods
+          .unregisterApplication(app.name)
           .then(() => {
-            if (getAppStatus(app.name) !== MOUNTED) {
-              throw Error(
-                `After attempting to remount the application '${
-                  app.name
-                }', the app is in ${getAppStatus(
-                  app.name
-                )} status instead of ${MOUNTED} status`
-              );
-            }
-
-            window.__SINGLE_SPA_DEVTOOLS__.exposedMethods.unregisterApplication(
-              app.name
+            /* global System */
+            registerApplication(
+              app.name,
+              () => System.import(app.name),
+              (location) => location.pathname.startsWith(app.pathPrefix)
             );
+            window.history.pushState({}, document.title, app.pathPrefix);
           })
           .catch((err) => {
             setError(err);
@@ -53,7 +44,7 @@ export default forwardRef(function Remounting({ app, stepNumber }, ref) {
         onClick={toggleExpanded}
       >
         <div className="step-number">{stepNumber}</div>
-        <div className="step-summary">Remounting the application works</div>
+        <div className="step-summary">View the application</div>
       </div>
       {(isExpanded || error) && (
         <div className="step-detail">

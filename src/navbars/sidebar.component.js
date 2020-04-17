@@ -6,7 +6,6 @@ import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 
 export default function Sidebar(props) {
   const scope = useCss(css);
-  const { applications } = useContext(LocalStorageContext);
 
   useEffect(() => {
     if (props.forceShow) {
@@ -36,7 +35,7 @@ export default function Sidebar(props) {
                   src="https://single-spa.js.org/img/logo-white-bgblue.svg"
                   alt="single-spa logo"
                 />
-                <div className="product-name">single-spa playground</div>
+                <div className="product-name">Playground</div>
               </div>
             </NavLink>
           </li>
@@ -44,62 +43,36 @@ export default function Sidebar(props) {
         <div>
           <li>
             <NavLink
-              to="/registered-apps"
+              to="/applications-guide"
               className="nav-link"
               activeClassName="active"
               onClick={maybeHideSidebar}
             >
-              <div>single-spa applications</div>
-            </NavLink>
-          </li>
-        </div>
-        {/* <div>
-          <li>
-            <NavLink
-              to="/import-map"
-              className="nav-link"
-              activeClassName="active"
-              onClick={maybeHideSidebar}
-            >
-              <div>Import Map</div>
-            </NavLink>
-          </li>
-        </div> */}
-        {/* {applications.map((app) => (
-          <div key={app.name}>
-            <li>
-              <NavLink
-                to={`/app/${encodeURIComponent(app.name)}`}
-                className="nav-link"
-                activeClassName="active"
-                onClick={maybeHideSidebar}
-              >
-                <div>{app.name}</div>
-              </NavLink>
-            </li>
-          </div>
-        ))} */}
-        <div>
-          <li>
-            <NavLink
-              to="/verify-single-spa-app"
-              className="nav-link"
-              activeClassName="active"
-              onClick={maybeHideSidebar}
-            >
-              <div>verify single-spa app</div>
+              <div>Single-spa applications</div>
             </NavLink>
           </li>
         </div>
         <div>
           <li>
             <NavLink
-              to="/root-config"
+              to="/verify-app-guide"
               className="nav-link"
               activeClassName="active"
               onClick={maybeHideSidebar}
             >
-              <div>root-config</div>
+              <div>Verify single-spa app</div>
+            </NavLink>
+          </li>
+        </div>
+        <div>
+          <li>
+            <NavLink
+              to="/root-config-guide"
+              className="nav-link"
+              activeClassName="active"
+              onClick={maybeHideSidebar}
+            >
+              <div>Root configuration</div>
             </NavLink>
           </li>
         </div>

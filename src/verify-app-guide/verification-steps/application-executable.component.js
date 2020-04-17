@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CodeOutput from "../shared/code-output.component";
+import CodeOutput from "../../shared/code-output.component";
 
 export default React.forwardRef(function ApplicationExecutable(props, ref) {
   const [isExpanded, setIsExpanded] = useState(false);

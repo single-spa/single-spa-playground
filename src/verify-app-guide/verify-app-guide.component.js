@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import PageHeader from "../shared/page-header.component";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCss } from "kremling";
-import RegisteredApp from "../registered-apps/registered-app.component";
+import RegisteredApp from "../shared/registered-app.component";
 import { navigateToUrl } from "single-spa";
-import VerificationSteps from "./verification-steps.component";
-import EditApplication from "../registered-apps/edit-application.component";
+import VerificationSteps from "./verification-steps/verification-steps.component";
 
-export default function TestApp(props) {
+export default function VerifyAppGuide(props) {
   const { application, addApplication, updateApplication } = useContext(
     LocalStorageContext
   );
@@ -131,7 +130,7 @@ export default function TestApp(props) {
               the next step.
             </section>
             <section>
-              <Link to="/root-config" className="primary button">
+              <Link to="/root-config-guide" className="primary button">
                 Next step: root-config
               </Link>
             </section>

@@ -27,7 +27,8 @@ export default function HtmlFile(props) {
       "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
       "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
       "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js",
-      "${application.name}": "${appUrls[application.name]}"
+      "${application.name}": "${appUrls[application.name]}",
+      "{{YourRootConfigName}}": "{{YourRootConfigJS}}"
     }
   }
 </script>`;
@@ -43,7 +44,7 @@ singleSpa.start();
   `;
   return (
     <>
-      <PageHeader title="The HTML file" />
+      <PageHeader title="Root configuration" />
       <article className="card" {...scope}>
         <section>
           It's time to talk about the root-config. In single-spa, there is only
@@ -61,7 +62,7 @@ singleSpa.start();
           The single-spa root config is something that we can provide for you
           entirely. Let's use the create-single-spa again!
         </section>
-        <h3>Your single-spa root config</h3>
+        <h2>Creating a single-spa root config</h2>
         <div>
           You'll want to create an{" "}
           <span className="whole-new-git-repo">entirely new git repo</span> for
@@ -76,13 +77,34 @@ singleSpa.start();
           everything root-config related now!
         </p>
         <p>
-          First, lets talk about the import-map. "ADD HERE LINKS TO VIDEO ABOUT
-          IMPORTMAP"
+          First, lets talk about the{" "}
+          <a href="https://github.com/WICG/import-maps" target="_blank">
+            import-maps
+          </a>
+          !
         </p>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <iframe
+            title="import-map-tutorial"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Lfm2Ge_RUxs"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
         <p>
-          <b>TL;DR;</b> an import-map is how Systemjs know where are your
-          applications! But not only your applications, but also the
-          dependencies for your applications!
+          Import-maps are a browser specification for controlling which{" "}
+          <b>URL to download javascript bundles from</b>. The npm library{" "}
+          <a href="https://github.com/systemjs/systemjs" target="_blank">
+            systemjs
+          </a>{" "}
+          is a polyfill for this specification, which lets us use import maps in
+          browsers that don't yet support them. We will use an import map to
+          control where to download your applications from, which sets you up
+          for easy independent deployability once you get things working
+          locally.
         </p>
         <p>
           If you've been following this guide, and created a single-spa react
@@ -101,11 +123,11 @@ singleSpa.start();
         </p>
         <Code code={`System.register(["react","react-dom"], function(...`} />
         <p>
-          This is how Systemjs manages dependencies for Systemjs modules. So,
+          This is how systemjs manages dependencies for systemjs modules. So,
           before running your single-spa react application, systemjs need to
           know what to do with "react" and "react-dom"! Just add them to your
-          root-config import-maps and you are ready to go! Also, don't forget to
-          add your own configuration!
+          root-config import-map and you are ready to go! Also, don't forget to
+          add both root-config and single-spa application!
         </p>
         <Code code={code} />
         <div className="copy-row">
@@ -130,9 +152,9 @@ singleSpa.start();
         <p>Now we need to start the root-config. Run:</p>
         <Code code={`yarn start --https`} />
         <p>
-          Remember! Https is optional, but only if you consuming from non-https
-          served assets! So you can drop the <b>--https</b>, but you need to
-          also drop it from your single-spa application too.
+          Remember! Https is optional, but only if you're consuming from
+          non-https served assets! So you can drop the <b>--https</b>, but you
+          need to also drop it from your single-spa application too.
         </p>
         <p>
           But wait... Why am I only seeing a blank page? Well, did you

@@ -75,7 +75,7 @@ export default function Introduction(props) {
           </a>
         </section>
         <section className="actions">
-          <Link className="primary button" to="/registered-apps">
+          <Link className="primary button" to="/applications-guide">
             Get started
           </Link>
         </section>
