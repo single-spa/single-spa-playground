@@ -5,6 +5,7 @@ import createSingleSpaCli from "./create-single-spa-cli.gif";
 import Code from "../shared/code.component";
 import PageHeader from "../shared/page-header.component";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
+import { RegisterAppDocLink } from "../shared/links.component";
 
 export default function RegisteredApps(props) {
   const { applications, addApplication, updateApplication } = useContext(
@@ -24,11 +25,11 @@ export default function RegisteredApps(props) {
           </a>{" "}
           is everything a normal SPA is, but it doesn't have to attach itself in
           the DOM as single-spa will handle this for you! You just need to{" "}
-          <a href="https://single-spa.js.org/docs/api.html#registerapplication">
+          <RegisterAppDocLink>
             register your applications with single-spa
-          </a>{" "}
+          </RegisterAppDocLink>{" "}
           so that single-spa can make sure the right one is active for any
-          particular url.
+          particular url, but we'll talk more about this later.
         </section>
         <h3>Creating your first single-spa application</h3>
         <section>
@@ -46,13 +47,9 @@ export default function RegisteredApps(props) {
             />
           </div>
           <p>
-            By itself, your single-spa application cannot be ran on browser.
-            After all, who will attach it to the DOM and bootstrap everything?
-            Well, <b>anyone</b> using single-spa{" "}
-            <a href="https://single-spa.js.org/docs/api.html#registerapplication">
-              registerApplication
-            </a>{" "}
-            and referencing your app!
+            By itself, your single-spa application cannot be ran on browser. So
+            we prepared this playground to support ANY single-spa application!
+            How?
           </p>
           <p>Remember the last 2 steps?</p>
           <Code
@@ -63,7 +60,7 @@ Steps to test your React single-spa application:
 2. Go to https://single-spa-playground.org/playground/instant-test?name=@org/app&url=8500 to see it working!
           `}
           />
-          <CollapsableContent title="The first is to start your webpack-dev-server using https">
+          <CollapsableContent title="The first was to start your webpack-dev-server using https">
             <>
               <h3>Do I need https?</h3>
             </>
@@ -124,7 +121,7 @@ function CollapsableContent({ title, children }) {
       <p {...scope}>
         {title}{" "}
         <button
-          className="toggle"
+          className="toggle link"
           onClick={() => setVisible((visible) => !visible)}
         >
           ({visible ? "hide" : "more"})
@@ -139,6 +136,7 @@ const collapseCss = `
   & .toggle {
     cursor: pointer;
     color: var(--single-spa-blue);
+    font-size: 1em;
   }
 
 `;

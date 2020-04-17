@@ -93,4 +93,8 @@ input, select {
   justify-content: center;
   margin-top: 1.6rem;
 }
+
+& button.link {
+  padding: 0;
+}
 `;

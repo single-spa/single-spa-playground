@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCss } from "kremling";
 
-export default function EditApplication({
+export default function EditRegisteredApp({
   app = {},
   updateApp,
   addApp,

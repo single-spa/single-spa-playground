@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../shared/page-header.component";
+import {
+  SlackLink,
+  GithubPlaygroundIssuesLink,
+  GithubPlaygroundPullsLink,
+} from "../shared/links.component";
 
 export default function Introduction(props) {
   return (
@@ -53,26 +58,14 @@ export default function Introduction(props) {
         <section>
           If you get stuck or have suggestions for improving
           single-spa-playground, consider{" "}
-          <a
-            target="_blank"
-            href="https://join.slack.com/t/single-spa/shared_invite/enQtODAwNTIyMzc4OTE1LWUxMTUwY2M1MTY0ZGMzOTUzMGNkMzI1NzRiYzYwOWM1MTEzZDM1NDAyNWM3ZmViOTAzZThkMDcwMWZmNTFmMWQ"
-          >
-            joining our slack workspace
-          </a>
-          ,{" "}
-          <a
-            target="_blank"
-            href="https://github.com/single-spa/single-spa-playground/pulls"
-          >
+          <SlackLink>joining our slack workspace</SlackLink>,{" "}
+          <GithubPlaygroundPullsLink>
             opening a pull request
-          </a>
+          </GithubPlaygroundPullsLink>
           , or{" "}
-          <a
-            target="_blank"
-            href="https://github.com/single-spa/single-spa-playground/issues"
-          >
+          <GithubPlaygroundIssuesLink>
             filing an issue.
-          </a>
+          </GithubPlaygroundIssuesLink>
         </section>
         <section className="actions">
           <Link className="primary button" to="/applications-guide">

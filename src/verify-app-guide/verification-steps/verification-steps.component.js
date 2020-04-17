@@ -5,6 +5,7 @@ import LifecyclesExported from "./lifecycles-exported.component";
 import MountLifecycle from "./mount-lifecycle.component";
 import UnmountLifecycle from "./unmount-lifecycle.component";
 import Remounting from "./remounting.component";
+import { useCss } from "kremling";
 
 const stepComponents = [
   ApplicationDownloadable,
@@ -21,6 +22,7 @@ export default function VerificationSteps({ app }) {
   const [errorIndex, setErrorIndex] = useState(null);
   const [runningTest, setRunningTest] = useState(false);
   const [restartingTests, setRestartingTests] = useState(false);
+  const scope = useCss(css);
 
   useEffect(() => {
     if (runningTest) {
@@ -48,7 +50,7 @@ export default function VerificationSteps({ app }) {
   }, [restartingTests]);
 
   return (
-    <>
+    <div {...scope}>
       <section>
         Download url:{" "}
         <a
@@ -88,7 +90,7 @@ export default function VerificationSteps({ app }) {
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 
   function getStepStatusClass(stepIndex) {
@@ -130,3 +132,69 @@ export default function VerificationSteps({ app }) {
     }
   }
 }
+
+const css = `
+& .step {
+}
+
+& .step-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+& .step-number {
+  height: 3.0rem;
+  width: 3.0rem;
+  border-radius: 50%;
+  border: .2rem solid var(--single-spa-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--single-spa-blue);
+}
+
+& .step-summary {
+  margin-left: 1.6rem;
+}
+
+& .step-detail, & .between-steps {
+  margin-left: 1.5rem;
+  border-left: .2rem solid var(--single-spa-blue);
+  padding-left: 3.2rem;
+}
+
+& .step-detail {
+  padding-top: 1.6rem;
+}
+
+& .between-steps {
+  height: 3.2rem;
+}
+
+& .error .step-number {
+  border: .2rem solid red;
+  background-color: red;
+  color: white;
+}
+
+& .error .step-detail, & .error .between-steps, & .error-before-step .step-detail, & .error-before-step .between-steps {
+  border-left: .2rem solid red;
+}
+
+& .error-before-step .step-number {
+  border: .2rem solid red;
+  color: red;
+}
+
+& .completed .step-number {
+  background-color: var(--single-spa-blue);
+  color: white;
+}
+
+& .congrats {
+  height: 3.8rem;
+  display: flex;
+  align-items: center;
+}
+`;

@@ -2,17 +2,19 @@ import React, { useContext, useState } from "react";
 import PageHeader from "../shared/page-header.component";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 import { Link } from "react-router-dom";
-import { useCss } from "kremling";
 import RegisteredApp from "../shared/registered-app.component";
-import { navigateToUrl } from "single-spa";
+import EditRegisteredApp from "../shared/edit-registered-app.component";
 import VerificationSteps from "./verification-steps/verification-steps.component";
+import {
+  PlaygroundRegisteredAppLink,
+  SlackLink,
+  GithubPlaygroundIssuesLink,
+} from "../shared/links.component";
 
 export default function VerifyAppGuide(props) {
   const { application, addApplication, updateApplication } = useContext(
     LocalStorageContext
   );
-
-  const scope = useCss(css);
 
   const [showVerificationSteps, setShowVerificationSteps] = useState(false);
   const [showRegisterApp, setShowRegisterApp] = useState(false);
@@ -21,7 +23,7 @@ export default function VerifyAppGuide(props) {
   return (
     <>
       <PageHeader title="Validate single-spa application" />
-      <article className="card" {...scope}>
+      <article className="card">
         <section>
           If you came from the redirect from create-single-spa, your app should
           be already registered in this playground! But you can always register
@@ -39,7 +41,7 @@ export default function VerifyAppGuide(props) {
 
             {isEditingApp && (
               <section>
-                <EditApplication
+                <EditRegisteredApp
                   app={isEditingApp ? application : null}
                   cancel={() => setIsEditingApp(false)}
                   updateApp={updateApp}
@@ -48,15 +50,9 @@ export default function VerifyAppGuide(props) {
             )}
             <section>
               You can also verify if your application is working by{" "}
-              <a
-                target="_blank"
-                href={application.pathPrefix}
-                href={application.pathPrefix}
-                onClick={navigateToUrl}
-              >
-                {" "}
+              <PlaygroundRegisteredAppLink app={application}>
                 using the playground
-              </a>
+              </PlaygroundRegisteredAppLink>
               . This will let you see your application working inside of this
               browser tab. The single-spa playground will disappear, and your
               code will take over. To comeback, just click the single-spa logo!
@@ -65,19 +61,10 @@ export default function VerifyAppGuide(props) {
         )}
         <section>
           Got stuck? you can always hit us in our{" "}
-          <a
-            target="_blank"
-            href="https://join.slack.com/t/single-spa/shared_invite/enQtODAwNTIyMzc4OTE1LWUxMTUwY2M1MTY0ZGMzOTUzMGNkMzI1NzRiYzYwOWM1MTEzZDM1NDAyNWM3ZmViOTAzZThkMDcwMWZmNTFmMWQ"
-          >
-            single-spa slack workspace
-          </a>{" "}
-          or{" "}
-          <a
-            target="_blank"
-            href="https://github.com/single-spa/single-spa-playground/issues"
-          >
+          <SlackLink>single-spa slack workspace</SlackLink> or{" "}
+          <GithubPlaygroundIssuesLink>
             file a github issue
-          </a>
+          </GithubPlaygroundIssuesLink>
         </section>
 
         <section>
@@ -94,7 +81,7 @@ export default function VerifyAppGuide(props) {
           </div>
         </section>
         {showRegisterApp && (
-          <EditApplication
+          <EditRegisteredApp
             addApp={addAndClose}
             cancel={() => setShowRegisterApp(false)}
             updateApp={updateApp}
@@ -129,7 +116,7 @@ export default function VerifyAppGuide(props) {
               Once you've verified things are working as expected, proceed to
               the next step.
             </section>
-            <section>
+            <section className="actions next-step">
               <Link to="/root-config-guide" className="primary button">
                 Next step: root-config
               </Link>
@@ -160,73 +147,11 @@ export default function VerifyAppGuide(props) {
     window.importMapOverrides.addOverride(app.name, url);
     app.url = url;
     addApplication(app);
-    // window.location.reload();
+    window.location.reload();
     setShowRegisterApp(false);
   }
 }
 
 const css = `
-& .step {
-}
-
-& .step-header {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-& .step-number {
-  height: 3.0rem;
-  width: 3.0rem;
-  border-radius: 50%;
-  border: .2rem solid var(--single-spa-blue);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--single-spa-blue);
-}
-
-& .step-summary {
-  margin-left: 1.6rem;
-}
-
-& .step-detail, & .between-steps {
-  margin-left: 1.5rem;
-  border-left: .2rem solid var(--single-spa-blue);
-  padding-left: 3.2rem;
-}
-
-& .step-detail {
-  padding-top: 1.6rem;
-}
-
-& .between-steps {
-  height: 3.2rem;
-}
-
-& .error .step-number {
-  border: .2rem solid red;
-  background-color: red;
-  color: white;
-}
-
-& .error .step-detail, & .error .between-steps, & .error-before-step .step-detail, & .error-before-step .between-steps {
-  border-left: .2rem solid red;
-}
-
-& .error-before-step .step-number {
-  border: .2rem solid red;
-  color: red;
-}
-
-& .completed .step-number {
-  background-color: var(--single-spa-blue);
-  color: white;
-}
-
-& .congrats {
-  height: 3.8rem;
-  display: flex;
-  align-items: center;
-}
+  &
 `;
