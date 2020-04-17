@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PageHeader from "../shared/page-header.component";
 import { useCss } from "kremling";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
+import { SlackLink } from "../shared/links.component";
 import Code from "../shared/code.component";
 
 export default function HtmlFile(props) {
@@ -89,9 +90,9 @@ singleSpa.start();
             width="560"
             height="315"
             src="https://www.youtube.com/embed/Lfm2Ge_RUxs"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
         <p>
@@ -167,6 +168,10 @@ singleSpa.start();
           root-config entrypoint file.
         </p>
         <Code code={registerAppCode} />
+        <p>
+          And that's all for now! Feedbacks would be appreciated,{" "}
+          <SlackLink>join us in our slack</SlackLink> and give us a hello!
+        </p>
       </article>
     </>
   );

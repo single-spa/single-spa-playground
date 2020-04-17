@@ -6,9 +6,11 @@ import MountLifecycle from "./mount-lifecycle.component";
 import UnmountLifecycle from "./unmount-lifecycle.component";
 import Remounting from "./remounting.component";
 import { useCss } from "kremling";
+import ApplicationDependencies from "./application-dependencies.component";
 
 const stepComponents = [
   ApplicationDownloadable,
+  ApplicationDependencies,
   ApplicationExecutable,
   LifecyclesExported,
   MountLifecycle,
