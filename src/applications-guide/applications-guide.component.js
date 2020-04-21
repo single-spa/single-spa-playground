@@ -21,15 +21,10 @@ export default function RegisteredApps(props) {
         <section>
           A{" "}
           <a href="https://single-spa.js.org/docs/building-applications.html">
-            single-spa-application
+            single-spa application
           </a>{" "}
-          is everything a normal SPA is, but it doesn't have to attach itself in
-          the DOM as single-spa will handle this for you! You just need to{" "}
-          <RegisterAppDocLink>
-            register your applications with single-spa
-          </RegisterAppDocLink>{" "}
-          so that single-spa can make sure the right one is active for any
-          particular url, but we'll talk more about this later.
+          is everything a normal SPA is, except it must share a single HTML file
+          with other applications
         </section>
         <h3>Creating your first single-spa application</h3>
         <section>
@@ -47,9 +42,11 @@ export default function RegisteredApps(props) {
             />
           </div>
           <p>
-            By itself, your single-spa application cannot be ran on browser. So
-            we prepared this playground to support ANY single-spa application!
-            How?
+            Since single-spa applications do not have their own HTML files, they
+            cannot be run as standalone apps. Instead, they produce javascript
+            and css that can be dynamically injected into an HTML file. This
+            playground allows you to dynamically inject your javascript and css
+            into it so that you can test out your application! How?
           </p>
           <p>Remember the last 2 steps?</p>
           <Code
@@ -60,23 +57,24 @@ Steps to test your React single-spa application:
 2. Go to https://single-spa-playground.org/playground/instant-test?name=@org/app&url=8500 to see it working!
           `}
           />
-          <CollapsableContent title="The first was to start your webpack-dev-server using https">
-            <>
-              <h3>Do I need https?</h3>
-            </>
-            <p>
+          <p>The first was to start your webpack-dev-server using https</p>
+          <details>
+            <summary>Do I need https?</summary>
+            <blockquote>
               No, not at all! The only reason we ask you to run https is so that
               this playground (which is also on https) can download your assets
               being served by your webpack-dev-server! If you don't start it on
               --https, sadly, the security will kick in and block the asset
               download. When running both root-config and applications in your
               localhost, you don't actually need to run in https!
-            </p>
-          </CollapsableContent>
-          The second is a redirect to this playground, so we can bootstrap your
-          single-spa application for you! And there it is! You have a single-spa
-          application, being served by your localhost, and being run in a
-          deployed application!
+            </blockquote>
+          </details>
+          <p>
+            The second is a redirect to this playground, so we can bootstrap
+            your single-spa application for you! And there it is! You have a
+            single-spa application, being served by your localhost, and being
+            run in a deployed application!
+          </p>
           <p>Welcome to the microfrontend era!</p>
           <p>
             Before we guide you into making the{" "}

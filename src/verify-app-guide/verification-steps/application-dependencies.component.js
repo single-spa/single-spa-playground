@@ -22,6 +22,7 @@ export default React.forwardRef(function ApplicationDependencies(
   useEffect(() => {
     if (missingDeps.length > 0) {
       setError(true);
+      setIsExpanded(true);
     }
   }, [missingDeps]);
 
@@ -67,26 +68,16 @@ export default React.forwardRef(function ApplicationDependencies(
   }
 
   function runTest() {
-    return fetch(window.importMapOverrides.getOverrideMap().imports[app.name])
-      .then((resp) => resp.text())
-      .then((jsBundleStringified) => {
-        const matchFirstArgumentArray = /^System\.register\((\[.+?\])/;
-        const match = jsBundleStringified.match(matchFirstArgumentArray);
-        if (match) {
-          const sharedDependenciesFromSystemjsBundle = JSON.parse(match[1]);
-          if (Array.isArray(sharedDependenciesFromSystemjsBundle)) {
-            setSharedDependencies(sharedDependenciesFromSystemjsBundle);
-            const missingDeps = getMissingDeps(
-              sharedDependenciesFromSystemjsBundle
-            );
-            if (missingDeps.length > 0) {
-              setMissingDeps(missingDeps);
-              throw new Error("Missing shared dependencies");
-            }
-
-            toggleExpanded();
-          }
+    return getAppDependencies({ name: app.name })
+      .then((appSharedDeps) => {
+        setSharedDependencies(appSharedDeps);
+        const missingDeps = getMissingDeps(appSharedDeps);
+        if (missingDeps.length > 0) {
+          setMissingDeps(missingDeps);
+          throw new Error("Missing shared dependencies");
         }
+
+        toggleExpanded();
       })
       .catch((err) => {
         setError(err);
@@ -95,14 +86,49 @@ export default React.forwardRef(function ApplicationDependencies(
   }
 });
 
-const getMissingDeps = (sharedDependencies) => {
+export const getAppDependencies = ({ name, url }) => {
+  const fetchUrl =
+    url || window.importMapOverrides.getOverrideMap().imports[name];
+  return fetch(fetchUrl)
+    .then((resp) => resp.text())
+    .then((jsBundleStringified) => {
+      const systemjsModule = /^System\.register\((\[.+?\])/;
+      const amdModule = /define\((\[.+?\])/;
+      const match =
+        jsBundleStringified.match(systemjsModule) ||
+        jsBundleStringified.match(amdModule);
+
+      if (match) {
+        const appSharedDeps = JSON.parse(match[1]);
+        return appSharedDeps;
+      }
+
+      return [];
+    });
+};
+
+export const getPlaygroundDeps = () => {
   const playgroundImportmap = document.getElementById("playground-import-map");
-  const playgroundSharedDep = Object.keys(
-    JSON.parse(playgroundImportmap.textContent).imports
-  );
+  const importmapOverrides = document.getElementById("import-map-overrides");
+  const importMapOverridesDeps = JSON.parse(importmapOverrides.textContent)
+    .imports;
+  const playgroundSharedDep = JSON.parse(playgroundImportmap.textContent)
+    .imports;
+
+  return {
+    importMapOverridesDeps,
+    playgroundSharedDep,
+  };
+};
+
+const getMissingDeps = (sharedDependencies) => {
+  const { importMapOverridesDeps, playgroundSharedDep } = getPlaygroundDeps();
   const missingDeps = sharedDependencies.reduce(
     (acc, sharedDep) =>
-      playgroundSharedDep.includes(sharedDep) ? acc : acc.concat(sharedDep),
+      playgroundSharedDep.includes(sharedDep) ||
+      importMapOverridesDeps.includes(sharedDep)
+        ? acc
+        : acc.concat(sharedDep),
     []
   );
 

@@ -3,16 +3,22 @@ import { useCss } from "kremling";
 import Code from "./code.component";
 import { LocalStorageContext } from "./use-local-storage-data.hook";
 import { ApplicationBundleLink } from "./links.component";
+import { getPlaygroundDeps } from "../verify-app-guide/verification-steps/application-dependencies.component";
 
 export default function RegisteredApp({ app, edit, interactive }) {
   const scope = useCss(css);
 
   const { removeApplication } = useContext(LocalStorageContext);
-
+  const importMap = {
+    imports: {
+      [app.name]: window.importMapOverrides.getOverrideMap().imports[app.name],
+      ...sharedDepsImportMap(app.sharedDeps),
+    },
+  };
   return (
     <div {...scope}>
       <div className="registered-app">
-        <Code code={indentedCode(app)} />
+        <Code code={indentedCode(app, importMap)} />
         {interactive && (
           <>
             <div role="button" tabIndex={0} onClick={edit} className="edit">
@@ -85,7 +91,7 @@ const css = `
 }
 `;
 
-const indentedCode = (app) =>
+const indentedCode = (app, importMap) =>
   `
 singleSpa.registerApplication({
   name: '${app.name}',
@@ -93,9 +99,18 @@ singleSpa.registerApplication({
   activeWhen: '${app.pathPrefix}'
 });
 
-/** Partial import-map
- * { "${app.name}": "${
-    window.importMapOverrides.getOverrideMap().imports[app.name]
-  }" }
- ** /
+/* Import map */
+${JSON.stringify(importMap, null, 2)}
 `;
+
+export const sharedDepsImportMap = (sharedDeps = []) => {
+  const { importMapOverridesDeps, playgroundSharedDep } = getPlaygroundDeps();
+  return sharedDeps.reduce((importmap, sharedDep) => {
+    let url =
+      playgroundSharedDep[sharedDep] || importMapOverridesDeps[sharedDep];
+    return {
+      ...importmap,
+      [sharedDep]: url || "%{ADD_YOUR_URL_USING_IMPORT_MAP_OVERRIDE}",
+    };
+  }, {});
+};

@@ -25,9 +25,10 @@ export default function VerifyAppGuide(props) {
       <PageHeader title="Validate single-spa application" />
       <article className="card">
         <section>
-          If you came from the redirect from create-single-spa, your app should
-          be already registered in this playground! But you can always register
-          another one, so you can validate any single-spa application.
+          If you came to single-spa-playground from the instructions in
+          create-single-spa, your app should be already registered in this
+          playground! But you can always register another one, so you can
+          validate any single-spa application.
         </section>
         {application && (
           <>
@@ -93,9 +94,8 @@ export default function VerifyAppGuide(props) {
             <section>
               Now, lets verify if your application is ready to go! If you came
               from create-single-spa, this should work out-of-the-box, but you
-              can always come back when you customized and evolved you
-              single-spa application to check if it still conforms to single-spa
-              API
+              can always come back after making changes to your single-spa
+              application to check if it still conforms to single-spa API
             </section>
             <section>
               <button

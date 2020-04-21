@@ -4,6 +4,7 @@ import { useCss } from "kremling";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 import { SlackLink } from "../shared/links.component";
 import Code from "../shared/code.component";
+import { sharedDepsImportMap } from "../shared/registered-app.component";
 
 export default function HtmlFile(props) {
   const scope = useCss(css);
@@ -18,20 +19,18 @@ export default function HtmlFile(props) {
     }
   }, [copying]);
   const { application } = useContext(LocalStorageContext);
-  const appUrls = window.importMapOverrides.getOverrideMap().imports;
   if (!application)
     return <p>You need to register at least one application!</p>;
+
+  const importMap = {
+    [application.name]: window.importMapOverrides.getOverrideMap().imports[
+      application.name
+    ],
+    ...sharedDepsImportMap(application.sharedDeps),
+  };
   const code = `
 <script type="systemjs-importmap">
-  {
-    "imports": {
-      "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
-      "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
-      "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js",
-      "${application.name}": "${appUrls[application.name]}",
-      "{{YourRootConfigName}}": "{{YourRootConfigJS}}"
-    }
-  }
+  ${JSON.stringify(importMap, null, 2)}
 </script>`;
 
   const registerAppCode = `
@@ -80,7 +79,7 @@ singleSpa.start();
         <p>
           First, lets talk about the{" "}
           <a href="https://github.com/WICG/import-maps" target="_blank">
-            import-maps
+            import maps
           </a>
           !
         </p>
@@ -96,7 +95,7 @@ singleSpa.start();
           ></iframe>
         </div>
         <p>
-          Import-maps are a browser specification for controlling which{" "}
+          Import maps are a browser specification for controlling which{" "}
           <b>URL to download javascript bundles from</b>. The npm library{" "}
           <a href="https://github.com/systemjs/systemjs" target="_blank">
             systemjs
@@ -127,8 +126,8 @@ singleSpa.start();
           This is how systemjs manages dependencies for systemjs modules. So,
           before running your single-spa react application, systemjs need to
           know what to do with "react" and "react-dom"! Just add them to your
-          root-config import-map and you are ready to go! Also, don't forget to
-          add both root-config and single-spa application!
+          root-config import map and you are ready to go! Also, don't forget to
+          add both the root-config and single-spa application!
         </p>
         <Code code={code} />
         <div className="copy-row">
@@ -141,13 +140,13 @@ singleSpa.start();
             }}
             disabled={copying}
           >
-            Copy import-map
+            Copy import map
           </button>
         </div>
         <p>
           But how does my application runs in the playground? Well, for your
-          convenience, we already added "react" and "react-dom" in our
-          import-map! Just inspect the DOM and see for yourself!
+          convenience, we already added "react" and "react-dom" in our import
+          map! Just inspect the DOM and see for yourself!
         </p>
 
         <p>Now we need to start the root-config. Run:</p>
