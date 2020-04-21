@@ -29,7 +29,7 @@ export default function useLocalStorageData() {
       window.importMapOverrides.removeOverride(appName);
     },
     resetApplications() {
-      setData(emptyData);
+      setData(null);
       window.importMapOverrides.resetOverrides();
     },
   };
@@ -42,14 +42,8 @@ export default function useLocalStorageData() {
 
 function getDataFromLocalStorage() {
   try {
-    return (
-      JSON.parse(localStorage.getItem("single-spa-playground")) || emptyData
-    );
+    return JSON.parse(localStorage.getItem("single-spa-playground"));
   } catch {
-    return emptyData;
+    return null;
   }
 }
-
-const emptyData = {
-  application: null,
-};

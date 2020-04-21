@@ -81,6 +81,7 @@ export default React.forwardRef(function ApplicationDependencies(
       })
       .catch((err) => {
         setError(err);
+        console.error(err);
         throw err;
       });
   }
@@ -110,8 +111,13 @@ export const getAppDependencies = ({ name, url }) => {
 export const getPlaygroundDeps = () => {
   const playgroundImportmap = document.getElementById("playground-import-map");
   const importmapOverrides = document.getElementById("import-map-overrides");
-  const importMapOverridesDeps = JSON.parse(importmapOverrides.textContent)
-    .imports;
+  let importMapOverridesDeps;
+  try {
+    importMapOverridesDeps = JSON.parse(importmapOverrides.textContent).imports;
+  } catch (e) {
+    // do nothing
+  }
+
   const playgroundSharedDep = JSON.parse(playgroundImportmap.textContent)
     .imports;
 
@@ -125,8 +131,8 @@ const getMissingDeps = (sharedDependencies) => {
   const { importMapOverridesDeps, playgroundSharedDep } = getPlaygroundDeps();
   const missingDeps = sharedDependencies.reduce(
     (acc, sharedDep) =>
-      playgroundSharedDep.includes(sharedDep) ||
-      importMapOverridesDeps.includes(sharedDep)
+      Object.keys(playgroundSharedDep).includes(sharedDep) ||
+      Object.keys(importMapOverridesDeps).includes(sharedDep)
         ? acc
         : acc.concat(sharedDep),
     []

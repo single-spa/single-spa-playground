@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CodeOutput from "../../shared/code-output.component";
+import singleSpa from "single-spa";
 
 export default React.forwardRef(function ApplicationExecutable(props, ref) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -8,6 +9,28 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
     systemJsWebpackInteropErrorModuleName,
     setSystemJsWebpackInteropErrorModuleName,
   ] = useState(false);
+  const [
+    unableToResolveBareSpecifier,
+    setUnableToResolveBareSpecifier,
+  ] = useState(false);
+
+  const errorHandler = useCallback((error) => {
+    const match = error.message.match(
+      /Unable to resolve bare specifier \'(.+?)\'/
+    );
+    if (match) {
+      setUnableToResolveBareSpecifier(match[1]);
+    }
+    setError(error);
+  });
+
+  useEffect(() => {
+    singleSpa.addErrorHandler(errorHandler);
+
+    return () => {
+      singleSpa.removeErrorHandler(errorHandler);
+    };
+  });
 
   if (ref) {
     ref.current = {
@@ -47,6 +70,13 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
       {(isExpanded || error) && (
         <div className="step-detail">
           <CodeOutput code={error} />
+          {unableToResolveBareSpecifier && (
+            <div>
+              This probably means your application is trying to System.import( '
+              {unableToResolveBareSpecifier}') but it's not defined in import
+              map!
+            </div>
+          )}
           {systemJsWebpackInteropErrorModuleName && (
             <div>
               Your app name in the playground, does not match with the name

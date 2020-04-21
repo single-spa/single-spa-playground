@@ -32,7 +32,7 @@ export default function Root(props) {
 
   useEffect(() => {
     if (
-      !localStorage.getItem("single-spa-playground") &&
+      !localStorage.getItem("single-spa-playground").application &&
       !window.location.pathname.startsWith("/playground")
     ) {
       navigateToUrl("/playground");
@@ -49,6 +49,7 @@ export default function Root(props) {
     ).then(() => {
       if (!showPlayground) {
         const { application } = localStorageData;
+        if (!application) return;
         /* global System */
         registerApplication(
           application.name,

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useCss } from "kremling";
 import Code from "./code.component";
 import { LocalStorageContext } from "./use-local-storage-data.hook";
-import { ApplicationBundleLink } from "./links.component";
 import { getPlaygroundDeps } from "../verify-app-guide/verification-steps/application-dependencies.component";
 
 export default function RegisteredApp({ app, edit, interactive }) {
@@ -21,17 +20,12 @@ export default function RegisteredApp({ app, edit, interactive }) {
         <Code code={indentedCode(app, importMap)} />
         {interactive && (
           <>
-            <div role="button" tabIndex={0} onClick={edit} className="edit">
+            <button type="button" onClick={edit} className="edit">
               Edit
-            </div>
-            <div
-              role="button"
-              tabIndex={0}
-              onClick={removeButton}
-              className="remove"
-            >
+            </button>
+            <button type="button" onClick={removeButton} className="remove">
               Remove
-            </div>
+            </button>
           </>
         )}
       </div>
