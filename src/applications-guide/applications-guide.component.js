@@ -1,17 +1,11 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { useCss } from "kremling";
 import { Link } from "react-router-dom";
 import createSingleSpaCli from "./create-single-spa-cli.gif";
 import Code from "../shared/code.component";
 import PageHeader from "../shared/page-header.component";
-import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
-import { RegisterAppDocLink } from "../shared/links.component";
 
-export default function RegisteredApps(props) {
-  const { applications, addApplication, updateApplication } = useContext(
-    LocalStorageContext
-  );
-
+export default function RegisteredApps() {
   const scope = useCss(css);
 
   return (
@@ -108,33 +102,4 @@ const css = `
 & .next-step {
   margin-top: 1.6rem;
 }
-`;
-
-function CollapsableContent({ title, children }) {
-  const [visible, setVisible] = useState(false);
-  const scope = useCss(collapseCss);
-
-  return (
-    <>
-      <p {...scope}>
-        {title}{" "}
-        <button
-          className="toggle link"
-          onClick={() => setVisible((visible) => !visible)}
-        >
-          ({visible ? "hide" : "more"})
-        </button>
-      </p>
-      <blockquote>{visible ? children : null}</blockquote>
-    </>
-  );
-}
-
-const collapseCss = `
-  & .toggle {
-    cursor: pointer;
-    color: var(--single-spa-blue);
-    font-size: 1em;
-  }
-
 `;
