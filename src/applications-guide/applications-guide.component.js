@@ -47,22 +47,11 @@ export default function RegisteredApps() {
             code={`
 Project setup complete!
 Steps to test your React single-spa application:
-1. Run 'yarn start --https --port 8500'
+1. Run 'yarn start --port 8500'
 2. Go to https://single-spa-playground.org/playground/instant-test?name=@org/app&url=8500 to see it working!
           `}
           />
-          <p>The first was to start your webpack-dev-server using https</p>
-          <details>
-            <summary>Do I need https?</summary>
-            <blockquote>
-              No, not at all! The only reason we ask you to run https is so that
-              this playground (which is also on https) can download your assets
-              being served by your webpack-dev-server! If you don't start it on
-              --https, sadly, the security will kick in and block the asset
-              download. When running both root-config and applications in your
-              localhost, you don't actually need to run in https!
-            </blockquote>
-          </details>
+          <p>The first was to start your webpack-dev-server</p>
           <p>
             The second is a redirect to this playground, so we can bootstrap
             your single-spa application for you! And there it is! You have a

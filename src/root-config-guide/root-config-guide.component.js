@@ -150,16 +150,11 @@ singleSpa.start();
         </p>
 
         <p>Now we need to start the root-config. Run:</p>
-        <Code code={`yarn start --https`} />
-        <p>
-          Remember! Https is optional, but only if you're consuming from
-          non-https served assets! So you can drop the <b>--https</b>, but you
-          need to also drop it from your single-spa application too.
-        </p>
+        <Code code={`yarn start`} />
         <p>
           But wait... Why am I only seeing a blank page? Well, did you
-          registered you single-spa application? You can add them to your
-          import-map, but if you never register them in single-spa{" "}
+          registered you single-spa application? You can add them to your import
+          map, but if you never register them in single-spa{" "}
           <a href="https://single-spa.js.org/docs/api.html#registerapplication">
             registerApplication
           </a>
