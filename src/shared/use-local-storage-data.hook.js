@@ -13,7 +13,7 @@ export default function useLocalStorageData() {
       });
       window.importMapOverrides.addOverride(app.name, app.url);
     },
-    application: data.application,
+    application: data ? data.application : null,
     addApplication(app) {
       setData({
         ...data,

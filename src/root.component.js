@@ -31,8 +31,9 @@ export default function Root(props) {
   }, []);
 
   useEffect(() => {
+    const directLocalStorage = localStorage.getItem("single-spa-playground");
     if (
-      !localStorage.getItem("single-spa-playground").application &&
+      !(directLocalStorage && directLocalStorage.application) &&
       !window.location.pathname.startsWith("/playground")
     ) {
       navigateToUrl("/playground");
@@ -58,7 +59,7 @@ export default function Root(props) {
         );
       }
     });
-  }, [showPlayground]);
+  }, [localStorageData, showPlayground]);
 
   return showPlayground ? <Playground /> : <HiddenPlayground />;
 }
