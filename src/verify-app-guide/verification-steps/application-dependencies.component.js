@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CodeOutput from "../../shared/code-output.component";
+import { getAppDependencies } from "../../shared/use-app-shared-deps.hook";
 
 export default React.forwardRef(function ApplicationDependencies(
   { app, stepNumber },
@@ -86,27 +87,6 @@ export default React.forwardRef(function ApplicationDependencies(
       });
   }
 });
-
-export const getAppDependencies = ({ name, url }) => {
-  const fetchUrl =
-    url || window.importMapOverrides.getOverrideMap().imports[name];
-  return fetch(fetchUrl)
-    .then((resp) => resp.text())
-    .then((jsBundleStringified) => {
-      const systemjsModule = /^System\.register\((\[.+?\])/;
-      const amdModule = /define\((\[.+?\])/;
-      const match =
-        jsBundleStringified.match(systemjsModule) ||
-        jsBundleStringified.match(amdModule);
-
-      if (match) {
-        const appSharedDeps = JSON.parse(match[1]);
-        return appSharedDeps;
-      }
-
-      return [];
-    });
-};
 
 export const getPlaygroundDeps = () => {
   const playgroundImportmap = document.getElementById("playground-import-map");

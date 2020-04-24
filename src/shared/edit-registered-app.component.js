@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCss } from "kremling";
-import { getAppDependencies } from "../verify-app-guide/verification-steps/application-dependencies.component";
+import { getAppDependencies } from "./use-app-shared-deps.hook";
 
 export default function EditRegisteredApp({
   app = {},

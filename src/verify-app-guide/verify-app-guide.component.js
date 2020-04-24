@@ -132,6 +132,7 @@ export default function VerifyAppGuide(props) {
   }
 
   function updateApp(app, url, oldName) {
+    app.url = url;
     updateApplication(app);
     const oldUrl = window.importMapOverrides.getOverrideMap().imports[app.name];
     if (oldUrl !== url) {

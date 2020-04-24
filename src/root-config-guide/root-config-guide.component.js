@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PageHeader from "../shared/page-header.component";
 import { useCss } from "kremling";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
@@ -6,11 +6,17 @@ import { SlackLink } from "../shared/links.component";
 import Code from "../shared/code.component";
 import { sharedDepsImportMap } from "../shared/registered-app.component";
 import { Link } from "react-router-dom";
+import { useAppSharedDependencies } from "../shared/use-app-shared-deps.hook";
 
 export default function HtmlFile(props) {
   const scope = useCss(css);
   const [copying, setCopying] = React.useState(false);
-  React.useEffect(() => {
+  const { application } = useContext(LocalStorageContext);
+  const { appSharedDeps } = useAppSharedDependencies({
+    name: application && application.name,
+    url: application && application.url,
+  });
+  useEffect(() => {
     if (copying) {
       const timeoutId = setTimeout(() => {
         setCopying(false);
@@ -19,7 +25,6 @@ export default function HtmlFile(props) {
       return () => clearTimeout(timeoutId);
     }
   }, [copying]);
-  const { application } = useContext(LocalStorageContext);
   if (!application)
     return (
       <p>
@@ -84,7 +89,7 @@ singleSpa.start();
           everything root-config related now!
         </p>
         <p>
-          First, lets talk about the{" "}
+          First, let's talk about{" "}
           <a href="https://github.com/WICG/import-maps" target="_blank">
             import maps
           </a>
@@ -132,7 +137,15 @@ singleSpa.start();
           </a>{" "}
           What is important for now, is this line:
         </p>
-        <Code code={`System.register(["react","react-dom"], function(...`} />
+        {!appSharedDeps ? (
+          <p>loading...</p>
+        ) : (
+          <Code
+            code={`System.register(${JSON.stringify(
+              appSharedDeps
+            )}, function(...`}
+          />
+        )}
         <p>
           This is how systemjs manages dependencies for systemjs modules. So,
           before running your single-spa react application, systemjs need to

@@ -31,14 +31,13 @@ export default function Root(props) {
   }, []);
 
   useEffect(() => {
-    const directLocalStorage = localStorage.getItem("single-spa-playground");
     if (
-      !(directLocalStorage && directLocalStorage.application) &&
+      !localStorageData.application &&
       !window.location.pathname.startsWith("/playground")
     ) {
       navigateToUrl("/playground");
     }
-  }, []);
+  }, [localStorageData.application]);
 
   useEffect(() => {
     Promise.all(
