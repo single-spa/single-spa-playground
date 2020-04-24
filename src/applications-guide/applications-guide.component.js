@@ -61,7 +61,11 @@ Steps to test your React single-spa application:
           <p>Welcome to the microfrontend era!</p>
           <p>
             Before we guide you into making the{" "}
-            <a href="https://single-spa.js.org/docs/configuration">
+            <a
+              href="https://single-spa.js.org/docs/configuration"
+              target="_blank"
+              rel="noopener"
+            >
               root-config
             </a>{" "}
             so you can locally bootstrap your application, we will validate your

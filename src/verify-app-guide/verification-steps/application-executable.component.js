@@ -72,9 +72,9 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
           <CodeOutput code={error} />
           {unableToResolveBareSpecifier && (
             <div>
-              This probably means your application is trying to System.import( '
-              {unableToResolveBareSpecifier}') but it's not defined in import
-              map!
+              This probably means your application is trying to System.import('
+              {unableToResolveBareSpecifier}') but it's not defined in the
+              import map!
             </div>
           )}
           {systemJsWebpackInteropErrorModuleName && (

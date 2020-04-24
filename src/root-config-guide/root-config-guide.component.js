@@ -5,6 +5,7 @@ import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 import { SlackLink } from "../shared/links.component";
 import Code from "../shared/code.component";
 import { sharedDepsImportMap } from "../shared/registered-app.component";
+import { Link } from "react-router-dom";
 
 export default function HtmlFile(props) {
   const scope = useCss(css);
@@ -20,7 +21,13 @@ export default function HtmlFile(props) {
   }, [copying]);
   const { application } = useContext(LocalStorageContext);
   if (!application)
-    return <p>You need to register at least one application!</p>;
+    return (
+      <p>
+        You need to{" "}
+        <Link to="/verify-app-guide">register your application</Link> with
+        single-spa-playground before generating your root config.
+      </p>
+    );
 
   const importMap = {
     [application.name]: window.importMapOverrides.getOverrideMap().imports[
@@ -60,7 +67,7 @@ singleSpa.start();
         </section>
         <section>
           The single-spa root config is something that we can provide for you
-          entirely. Let's use the create-single-spa again!
+          entirely. Let's use create-single-spa again!
         </section>
         <h2>Creating a single-spa root config</h2>
         <div>
@@ -73,7 +80,7 @@ singleSpa.start();
         </div>
         <p>
           This command won't give you a running root-config out of the box for
-          our playground demonstration! But, fear not, you will understand
+          our playground demonstration! But fear not, you will understand
           everything root-config related now!
         </p>
         <p>
@@ -97,7 +104,11 @@ singleSpa.start();
         <p>
           Import maps are a browser specification for controlling which{" "}
           <b>URL to download javascript bundles from</b>. The npm library{" "}
-          <a href="https://github.com/systemjs/systemjs" target="_blank">
+          <a
+            href="https://github.com/systemjs/systemjs"
+            target="_blank"
+            rel="noopener"
+          >
             systemjs
           </a>{" "}
           is a polyfill for this specification, which lets us use import maps in
@@ -144,7 +155,7 @@ singleSpa.start();
           </button>
         </div>
         <p>
-          But how does my application runs in the playground? Well, for your
+          But how does my application run in the playground? Well, for your
           convenience, we already added "react" and "react-dom" in our import
           map! Just inspect the DOM and see for yourself!
         </p>
@@ -152,9 +163,9 @@ singleSpa.start();
         <p>Now we need to start the root-config. Run:</p>
         <Code code={`yarn start`} />
         <p>
-          But wait... Why am I only seeing a blank page? Well, did you
-          registered you single-spa application? You can add them to your import
-          map, but if you never register them in single-spa{" "}
+          But wait... Why am I only seeing a blank page? Well, did you register
+          you single-spa application? You can add them to your import map, but
+          if you never register them via{" "}
           <a href="https://single-spa.js.org/docs/api.html#registerapplication">
             registerApplication
           </a>
@@ -163,7 +174,7 @@ singleSpa.start();
         </p>
         <Code code={registerAppCode} />
         <p>
-          And that's all for now! Feedbacks would be appreciated,{" "}
+          And that's all for now! Feedback is greatly appreciated,{" "}
           <SlackLink>join us in our slack</SlackLink> and give us a hello!
         </p>
       </article>
@@ -172,9 +183,10 @@ singleSpa.start();
 }
 
 function copy(str) {
-  const el = document.createElement("textarea");
-  el.value = str;
-  el.setAttribute("readonly", "");
+  const el = Object.assign(document.createElement("textarea"), {
+    value: str,
+    readonly: true,
+  });
   el.style.position = "absolute";
   el.style.left = "-9999px";
   document.body.appendChild(el);

@@ -151,7 +151,3 @@ export default function VerifyAppGuide(props) {
     setShowRegisterApp(false);
   }
 }
-
-const css = `
-  &
-`;

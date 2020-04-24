@@ -34,25 +34,38 @@ export default function Introduction(props) {
           applications.
         </section>
         <section>
-          The playground will guide you to build a successful singe-spa
-          application, highlighting important steps and give tools to help you
-          understand what went wrong. Mind that this isn't the only way to use
-          single-spa, but by better understanding the concepts, you'll be able
-          to apply it in any way you like. Here's what we'll do:
+          The playground will guide you to build a successful sing-e-spa
+          application, highlighting important steps, and giving you tools to
+          help you understand what went wrong. Mind that this isn't the only way
+          to use single-spa, but by better understanding the concepts you'll be
+          able to apply it in any way you like. Here's what we'll do:
           <ol>
             <li>
               Have micro-frontends that are in separate git repos. We will be
               focusing on React, but you could use Angular, Vue, etc
             </li>
-            <li>Test if your microfrontend is build up correctly</li>
+            <li>Test if your microfrontend is built up correctly</li>
             <li>
               Understand and create a{" "}
-              <a href="https://single-spa.js.org/docs/configuration">
+              <a
+                href="https://single-spa.js.org/docs/configuration"
+                target="_blank"
+                rel="noopener"
+              >
                 root config
               </a>
-              , which will do the routing of your micro-frontends
+              , which will do the routing for your micro-frontends.
             </li>
-            <li>Deploy your micro-frontends independently.(coming soon)</li>
+            <li>
+              Deploy your micro-frontends independently{" "}
+              <a
+                href="https://single-spa.js.org/docs/recommended-setup/#deployment-and-continuous-integration-ci"
+                target="_blank"
+                rel="noopener"
+              >
+                (read more).
+              </a>
+            </li>
           </ol>
         </section>
         <section>
