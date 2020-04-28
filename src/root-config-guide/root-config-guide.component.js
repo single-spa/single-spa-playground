@@ -84,16 +84,15 @@ singleSpa.start();
           <Code code={`npx create-single-spa --module-type root-config`} />
         </div>
         <p>
-          This command won't give you a running root-config out of the box for
-          our playground demonstration! But fear not, you will understand
-          everything root-config related now!
+          Running that create-single-spa comand will give you a root config, but
+          it won't have your import map or applications set up yet. Here's what
+          you need to do to get those set up:
         </p>
         <p>
           First, let's talk about{" "}
           <a href="https://github.com/WICG/import-maps" target="_blank">
             import maps
           </a>
-          !
         </p>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <iframe

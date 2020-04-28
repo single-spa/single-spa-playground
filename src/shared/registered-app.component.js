@@ -23,26 +23,11 @@ export default function RegisteredApp({ app, edit, interactive }) {
             <button type="button" onClick={edit} className="edit">
               Edit
             </button>
-            <button type="button" onClick={removeButton} className="remove">
-              Remove
-            </button>
           </>
         )}
       </div>
     </div>
   );
-
-  function removeButton(evt) {
-    if (
-      window.confirm(
-        `Are you sure you want to remove application '${app.name}'?`
-      )
-    ) {
-      evt.stopPropagation();
-      evt.preventDefault();
-      removeApplication(app.name);
-    }
-  }
 }
 
 const css = `
@@ -55,7 +40,7 @@ const css = `
   left: 0;
   top: 0;
   height: 100%;
-  width: calc(100% - 15.0rem);
+  width: 100%;
   background-color: rgba(230, 230, 230, 0.8);
   display: none;
   align-items: center;
@@ -63,23 +48,6 @@ const css = `
 }
 
 & .registered-app:hover .edit, & .registered-app:focus .edit {
-  display: flex;
-  cursor: pointer;
-}
-
-& .remove {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 15.0rem;
-  background-color: lightgray;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-& .registered-app:hover .remove, & .registered-app:focus .remove {
   display: flex;
   cursor: pointer;
 }

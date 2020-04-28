@@ -34,17 +34,17 @@ export default function Introduction(props) {
           applications.
         </section>
         <section>
-          The playground will guide you to build a successful sing-e-spa
+          The playground will guide you to build a successful single-spa
           application, highlighting important steps, and giving you tools to
           help you understand what went wrong. Mind that this isn't the only way
           to use single-spa, but by better understanding the concepts you'll be
           able to apply it in any way you like. Here's what we'll do:
           <ol>
             <li>
-              Have micro-frontends that are in separate git repos. We will be
+              Have microfrontends that are in separate git repos. We will be
               focusing on React, but you could use Angular, Vue, etc
             </li>
-            <li>Test if your microfrontend is built up correctly</li>
+            <li>Test if your microfrontend is built correctly</li>
             <li>
               Understand and create a{" "}
               <a
@@ -54,10 +54,10 @@ export default function Introduction(props) {
               >
                 root config
               </a>
-              , which will do the routing for your micro-frontends.
+              , which will do the routing for your microfrontends.
             </li>
             <li>
-              Deploy your micro-frontends independently{" "}
+              Deploy your microfrontends independently{" "}
               <a
                 href="https://single-spa.js.org/docs/recommended-setup/#deployment-and-continuous-integration-ci"
                 target="_blank"
