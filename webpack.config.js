@@ -5,7 +5,7 @@ module.exports = {
   output: {
     filename: "single-spa-playground.js",
     path: path.resolve(__dirname, "dist/assets"),
-    publicPath: "/assets",
+    publicPath: "/assets/",
     libraryTarget: "system",
   },
   devtool: "sourcemap",
@@ -29,6 +29,14 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
       },
     ],
   },

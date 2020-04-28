@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CodeOutput from "../shared/code-output.component";
+import CodeOutput from "../../shared/code-output.component";
 
 export default React.forwardRef(function ApplicationDownloadable(
   { app, stepNumber },

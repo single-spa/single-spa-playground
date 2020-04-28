@@ -6,7 +6,7 @@ import {
   MOUNTED,
   getAppNames,
 } from "single-spa";
-import CodeOutput from "../shared/code-output.component";
+import CodeOutput from "../../shared/code-output.component";
 
 export let shouldMount = false;
 export const setShouldMount = (val) => (shouldMount = val);

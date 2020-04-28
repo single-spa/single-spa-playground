@@ -3,14 +3,14 @@ import PageHeader from "../shared/page-header.component";
 import useLocalStorageData from "../shared/use-local-storage-data.hook";
 
 export default function Stuck(props) {
-  const { applications } = useLocalStorageData();
+  const { application } = useLocalStorageData();
 
   const issueBody = `
 ## Data dump
 
 Applications:
 \`\`\`json
-${JSON.stringify(applications, null, 2)}
+${JSON.stringify(application, null, 2)}
 \`\`\`
 
 Import map:

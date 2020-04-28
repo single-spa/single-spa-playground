@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { triggerAppChange, getAppStatus, NOT_MOUNTED } from "single-spa";
-import CodeOutput from "../shared/code-output.component";
+import CodeOutput from "../../shared/code-output.component";
 import { setShouldMount } from "./mount-lifecycle.component";
 
 export default React.forwardRef(function UnmountLifecycle(

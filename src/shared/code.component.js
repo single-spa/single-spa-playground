@@ -14,6 +14,7 @@ export default function Code(props) {
 const css = `
 & pre {
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 & pre, & code {

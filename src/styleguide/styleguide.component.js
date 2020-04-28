@@ -37,6 +37,7 @@ input, select {
   padding: 8px 12px;
   border: none;
   text-align: center;
+  cursor: pointer;
 }
 
 & button:disabled, & a.button:disabled {
@@ -48,6 +49,13 @@ input, select {
   color: white;
   transition: background-color .2s;
 }
+
+& button.secondary, & a.button.secondary {
+  border: 1px solid var(--single-spa-blue);
+  color: var(--single-spa-blue);
+  transition: background-color .2s;
+}
+
 
 & a.button {
   text-decoration: none;
@@ -84,5 +92,9 @@ input, select {
   display: flex;
   justify-content: center;
   margin-top: 1.6rem;
+}
+
+& button.link {
+  padding: 0;
 }
 `;

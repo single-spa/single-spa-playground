@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useCss } from "kremling";
-import Code from "../shared/code.component";
-import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
+import Code from "../code.component";
+import { LocalStorageContext } from "../use-local-storage-data.hook";
 
 export default function RegisteredApp({ app, edit, interactive }) {
   const scope = useCss(css);

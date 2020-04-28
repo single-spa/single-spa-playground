@@ -6,30 +6,30 @@ export default function useLocalStorageData() {
   const [data, setDataState] = useState(getDataFromLocalStorage);
 
   return {
-    updateApplication(app, name) {
+    updateApplication(app) {
       setData({
         ...data,
-        applications: data.applications.map((a) => (a.name === name ? app : a)),
+        application: app,
       });
       window.importMapOverrides.addOverride(app.name, app.url);
     },
-    applications: data.applications,
+    application: data ? data.application : null,
     addApplication(app) {
       setData({
         ...data,
-        applications: [...data.applications, app],
+        application: app,
       });
       window.importMapOverrides.addOverride(app.name, app.url);
     },
     removeApplication(appName) {
       setData({
         ...data,
-        applications: data.applications.filter((a) => a.name !== appName),
+        application: null,
       });
       window.importMapOverrides.removeOverride(appName);
     },
     resetApplications() {
-      setData(emptyData);
+      setData(null);
       window.importMapOverrides.resetOverrides();
     },
   };
@@ -42,14 +42,8 @@ export default function useLocalStorageData() {
 
 function getDataFromLocalStorage() {
   try {
-    return (
-      JSON.parse(localStorage.getItem("single-spa-playground")) || emptyData
-    );
+    return JSON.parse(localStorage.getItem("single-spa-playground"));
   } catch {
-    return emptyData;
+    return null;
   }
 }
-
-const emptyData = {
-  applications: [],
-};
