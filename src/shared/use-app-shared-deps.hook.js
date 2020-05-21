@@ -12,12 +12,20 @@ export const getAppDependencies = ({ name, url }) => {
         jsBundleStringified.match(systemjsModule) ||
         jsBundleStringified.match(amdModule);
 
+      let appSharedDeps = [];
+
       if (match) {
-        const appSharedDeps = JSON.parse(match[1]);
-        return appSharedDeps;
+        try {
+          appSharedDeps = JSON.parse(match[1]);
+        } catch (err) {
+          console.error(
+            `There was an error parsing the application's shared deps.`,
+            err
+          );
+        }
       }
 
-      return [];
+      return appSharedDeps;
     });
 };
 
