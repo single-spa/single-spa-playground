@@ -6,7 +6,7 @@ export const getAppDependencies = ({ name, url }) => {
   return fetch(fetchUrl)
     .then((resp) => resp.text())
     .then((jsBundleStringified) => {
-      const systemjsModule = /^System\.register\((\[.+?\])/;
+      const systemjsModule = /^System\.register\((\[.*?\])/;
       const amdModule = /define\((\[.+?\])/;
       const match =
         jsBundleStringified.match(systemjsModule) ||
