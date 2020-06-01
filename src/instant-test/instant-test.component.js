@@ -11,7 +11,11 @@ export default function InstantTest(props) {
       return;
     }
 
-    const app = { name: params.get("name"), pathPrefix: "/" };
+    const app = {
+      name: params.get("name"),
+      pathPrefix: "/",
+      framework: params.get("framework") || undefined,
+    };
 
     addApplication(app);
 
