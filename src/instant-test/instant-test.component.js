@@ -1,31 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { LocalStorageContext } from "../shared/use-local-storage-data.hook";
 
 export default function InstantTest(props) {
-  const params = new URLSearchParams(location.search);
-  const isValid = params.has("name") && params.has("url");
+  const [isValid, setIsValid] = useState(true);
   const { addApplication } = React.useContext(LocalStorageContext);
 
   React.useEffect(() => {
-    if (!isValid) {
-      return;
+    const params = new URLSearchParams(location.search);
+
+    if (!(params.has("name") && params.has("url"))) {
+      setIsValid(false);
+    } else {
+      const app = {
+        name: params.get("name"),
+        pathPrefix: "/",
+        framework: params.get("framework") || undefined,
+      };
+
+      addApplication(app);
+
+      window.importMapOverrides.addOverride(
+        params.get("name"),
+        params.get("url")
+      );
+
+      location.assign("/");
     }
-
-    const app = {
-      name: params.get("name"),
-      pathPrefix: "/",
-      framework: params.get("framework") || undefined,
-    };
-
-    addApplication(app);
-
-    window.importMapOverrides.addOverride(
-      params.get("name"),
-      params.get("url")
-    );
-
-    location.assign("/");
-  }, [addApplication, isValid, params]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isValid) {
     return null;
