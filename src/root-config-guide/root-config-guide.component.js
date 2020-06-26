@@ -35,10 +35,12 @@ export default function HtmlFile(props) {
     );
 
   const importMap = {
-    [application.name]: window.importMapOverrides.getOverrideMap().imports[
-      application.name
-    ],
-    ...sharedDepsImportMap(application.sharedDeps),
+    imports: {
+      [application.name]: window.importMapOverrides.getOverrideMap().imports[
+        application.name
+      ],
+      ...sharedDepsImportMap(application.sharedDeps),
+    },
   };
   const code = `
 <script type="systemjs-importmap">
