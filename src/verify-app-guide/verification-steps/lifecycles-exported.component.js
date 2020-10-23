@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CodeOutput from "../../shared/code-output.component";
+import { importApp } from "./import-app";
 
 export default React.forwardRef(function LifecycleExports(props, ref) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -9,7 +10,7 @@ export default React.forwardRef(function LifecycleExports(props, ref) {
     ref.current = {
       runTest() {
         /* global System */
-        return System.import(props.app.name)
+        return importApp(props.app)
           .then((mod) => {
             if (
               typeof mod.bootstrap !== "function" ||

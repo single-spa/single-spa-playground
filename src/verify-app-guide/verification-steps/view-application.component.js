@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import { registerApplication } from "single-spa";
 import CodeOutput from "../../shared/code-output.component";
+import { importApp } from "./import-app";
 
 export default forwardRef(function ViewApplication({ app, stepNumber }, ref) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -15,7 +16,7 @@ export default forwardRef(function ViewApplication({ app, stepNumber }, ref) {
             /* global System */
             registerApplication(
               app.name,
-              () => System.import(app.name),
+              () => importApp(app),
               (location) => location.pathname.startsWith(app.pathPrefix)
             );
             window.history.pushState({}, document.title, app.pathPrefix);

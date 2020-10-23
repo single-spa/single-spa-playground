@@ -3,6 +3,7 @@ import Playground from "./playground.component";
 import useLocalStorageData from "./shared/use-local-storage-data.hook";
 import { getAppNames, registerApplication, navigateToUrl } from "single-spa";
 import HiddenPlayground from "./hidden-playground.component";
+import { importApp } from "./verify-app-guide/verification-steps/import-app";
 
 export default function Root(props) {
   const [showPlayground, setShowPlayground] = useState(() =>
@@ -53,7 +54,7 @@ export default function Root(props) {
         /* global System */
         registerApplication(
           application.name,
-          () => System.import(application.name),
+          () => importApp(application),
           (location) => location.pathname.startsWith(application.pathPrefix)
         );
       }

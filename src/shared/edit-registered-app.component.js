@@ -17,6 +17,7 @@ export default function EditRegisteredApp({
   const [alertMessage, setAlertMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [appSharedDeps, setAppSharedDeps] = useState([]);
+  const [useNativeModules, setUseNativeModules] = useState(false);
   const scope = useCss(css);
 
   const ariaPrefix = name || "new-app";
@@ -68,7 +69,13 @@ export default function EditRegisteredApp({
             type="text"
             value={url}
             onChange={(evt) => setUrl(evt.target.value)}
-            placeholder="http://localhost:8080/app1.js"
+            placeholder={
+              framework === "vue"
+                ? `http://localhost:8080/js/app.js`
+                : `http://localhost:8080/${
+                    name ? name.replace(/@/g, "").replace(/\//g, "-") : "app1"
+                  }.js`
+            }
             aria-labelledby={urlLabel}
             required
             autoComplete="off"
@@ -87,6 +94,33 @@ export default function EditRegisteredApp({
             required
             autoComplete="off"
           />
+        </label>
+      </div>
+      <div className="section">
+        <label>
+          <div className="inner-label">Module Loader (Advanced)</div>
+          <div className="form-inputs">
+            <label htmlFor="use-systemjs">SystemJS</label>
+            <input
+              id="use-systemjs"
+              type="radio"
+              name="use-esm"
+              checked={!useNativeModules}
+              onChange={(evt) => setUseNativeModules(!evt.target.checked)}
+              required
+              autoComplete="off"
+            />
+            <label htmlFor="use-esm">Browser</label>
+            <input
+              id="use-esm"
+              type="radio"
+              name="use-esm"
+              checked={useNativeModules}
+              onChange={(evt) => setUseNativeModules(evt.target.checked)}
+              required
+              autoComplete="off"
+            />
+          </div>
         </label>
       </div>
       <div className="actions">
@@ -162,6 +196,7 @@ export default function EditRegisteredApp({
       name,
       pathPrefix,
       sharedDeps: newAppSharedDeps || appSharedDeps,
+      useNativeModules,
     };
     app.name ? updateApp(appToSave, url, app.name) : addApp(appToSave, url);
   }
@@ -206,8 +241,17 @@ const css = `
   align-items: center;
 }
 
-& .application-form input, & .application-form select {
+& .application-form input[type="text"], & .application-form select {
   width: 35.0rem;
+}
+
+& .form-inputs {
+  display: flex;
+  align-items: center;
+}
+
+& .application-form input[type="radio"] {
+  margin-right: 2.4rem;
 }
 `;
 

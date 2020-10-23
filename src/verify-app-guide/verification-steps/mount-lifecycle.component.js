@@ -7,6 +7,7 @@ import {
   getAppNames,
 } from "single-spa";
 import CodeOutput from "../../shared/code-output.component";
+import { importApp } from "./import-app";
 
 export let shouldMount = false;
 export const setShouldMount = (val) => (shouldMount = val);
@@ -33,7 +34,7 @@ export default React.forwardRef(function MountLifecycle(
         /* global System */
         registerApplication(
           app.name,
-          () => System.import(app.name),
+          () => importApp(app),
           () => shouldMount
         );
 

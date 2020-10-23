@@ -3,6 +3,7 @@ import { useCss } from "kremling";
 import Code from "./code.component";
 import { LocalStorageContext } from "./use-local-storage-data.hook";
 import { getPlaygroundDeps } from "../verify-app-guide/verification-steps/application-dependencies.component";
+import { importAppCode } from "../verify-app-guide/verification-steps/import-app";
 
 export default function RegisteredApp({ app, edit, interactive }) {
   const scope = useCss(css);
@@ -57,7 +58,7 @@ const indentedCode = (app, importMap) =>
   `
 singleSpa.registerApplication({
   name: '${app.name}',
-  app: () => System.import('${app.name}'),
+  app: ${importAppCode(app)},
   activeWhen: '${app.pathPrefix}'
 });
 
