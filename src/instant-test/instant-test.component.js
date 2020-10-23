@@ -15,6 +15,7 @@ export default function InstantTest(props) {
         name: params.get("name"),
         pathPrefix: "/",
         framework: params.get("framework") || undefined,
+        useNativeModules: params.get("useNativeModules") === "true",
       };
 
       addApplication(app);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import CodeOutput from "../../shared/code-output.component";
 import singleSpa from "single-spa";
+import { importApp } from "./import-app";
 
 export default React.forwardRef(function ApplicationExecutable(props, ref) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -35,8 +36,7 @@ export default React.forwardRef(function ApplicationExecutable(props, ref) {
   if (ref) {
     ref.current = {
       runTest() {
-        /* global System */
-        return System.import(props.app.name).catch((err) => {
+        return importApp(props.app).catch((err) => {
           console.error(err);
           setError(err);
           if (err.message.match(/systemjs-webpack-interop/)) {

@@ -7,6 +7,7 @@ import Code from "../shared/code.component";
 import { sharedDepsImportMap } from "../shared/registered-app.component";
 import { Link } from "react-router-dom";
 import { useAppSharedDependencies } from "../shared/use-app-shared-deps.hook";
+import { importAppCode } from "../verify-app-guide/verification-steps/import-app";
 
 export default function HtmlFile(props) {
   const scope = useCss(css);
@@ -50,7 +51,7 @@ export default function HtmlFile(props) {
   const registerAppCode = `
 singleSpa.registerApplication(
   '${application.name}',
-  () => System.import('${application.name}'),
+  () => ${importAppCode(application)},
   location => location.pathname.startsWith('${application.pathPrefix}')
 );
 
