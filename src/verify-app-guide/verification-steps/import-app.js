@@ -1,8 +1,6 @@
 export function importApp(app) {
   if (app.useNativeModules) {
-    return import(
-      /* webpackIgnore: true */ "http://localhost:3000/vite/client"
-    ).then(() => import(/* webpackIgnore: true */ getAppUrl(app)));
+    return import(/* webpackIgnore: true */ getAppUrl(app));
   } else {
     return System.import(app.name);
   }
