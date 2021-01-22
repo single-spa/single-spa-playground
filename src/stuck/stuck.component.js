@@ -34,7 +34,7 @@ ${JSON.stringify(window.importMapOverrides.getOverrideMap(), null, 2)}
         </a>{" "}
         or to{" "}
         <a
-          href="https://join.slack.com/t/single-spa/shared_invite/enQtODAwNTIyMzc4OTE1LWUxMTUwY2M1MTY0ZGMzOTUzMGNkMzI1NzRiYzYwOWM1MTEzZDM1NDAyNWM3ZmViOTAzZThkMDcwMWZmNTFmMWQ"
+          href="https://join.slack.com/t/single-spa/shared_invite/zt-l2iljnpv-pW_o92mMpMR8RWfIOI6pTQ"
           target="_blank"
         >
           join our Slack workspace

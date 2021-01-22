@@ -4,7 +4,7 @@ import { navigateToUrl } from "single-spa";
 export const SlackLink = ({ children }) => (
   <a
     target="_blank"
-    href="https://join.slack.com/t/single-spa/shared_invite/enQtODAwNTIyMzc4OTE1LWUxMTUwY2M1MTY0ZGMzOTUzMGNkMzI1NzRiYzYwOWM1MTEzZDM1NDAyNWM3ZmViOTAzZThkMDcwMWZmNTFmMWQ"
+    href="https://join.slack.com/t/single-spa/shared_invite/zt-l2iljnpv-pW_o92mMpMR8RWfIOI6pTQ"
     rel="nooopener"
   >
     {children}
